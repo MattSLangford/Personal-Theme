@@ -1,6 +1,6 @@
 {
 	"paginate": 20,
 	"params": {
-		"welcome_message": "Welcome to my corner of the internet.\n\nThis is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.\n\nYou can find my recent writing in the [archives](/posts/), browse by [categories](/categories/), or explore the [complete archive](/archive/) of everything I've published.\n\nThanks for visiting.\n\n*— Matt*"
+		"welcome_message": "Welcome to my corner of the internet.\n\nWhether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.\n\nYou can find my recent writing in the [archives](/posts/). I'm also on [Mastodon](https://micro.blog/mtt), [Instagram](https://instagram.com/mattlangford), [X](https://x.com/mattlangford), and [Micro.blog](https://micro.blog/mtt). For work stuff, check out [Desk of Matt](https://deskofmatt.com).\n\nThanks for visiting.\n\n*— Matt*"
 	}
 }
