@@ -1,3 +1,7 @@
 {
-	"paginate": 20
+	"paginate": 20,
+	"params": {
+		"welcome_message": "Welcome to my corner of the internet.\n\nThis is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.\n\nYou can find my recent writing in the [blog archives](/posts/), browse by [categories](/categories/), or explore the [complete archive](/archive/) of everything I've published.\n\nThanks for visiting.\n\n*— Matt*",
+		"show_recent_preview": false
+	}
 }

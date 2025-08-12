@@ -1,49 +1,83 @@
 {{ define "main" }}
-<div class="posts h-feed">
-    <div class="post_list" role="main">
-        {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") }}
-        {{ range .Paginator.Pages }}
-        <div class="post-preview h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}">
-            <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time> ∞</a>
-            {{ if .Title }}
-                <h2 class="post-title p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-                    {{ if in .RawContent "<!--more-->" }}
-                        <div class="p-summary">
-                            {{ $splitContents := split .RawContent "<!--more-->" }}
-                            {{ $summary := index $splitContents 0 }}
-                            {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-                            {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-                            {{ $summary | markdownify }}
-                            <p><a class="read-more" href="{{ .Permalink }}">Read More →</a></p>
-                        </div>
-                    {{ else if .Params.custom_summary }}
-                    <div class="p-summary">
-                        <p>{{ .Summary | safeHTML }}<p>
-                    </div>
-                    {{ else }}
-                        <div class="e-content">
-                            {{ .Content }}
-                        </div>
-                    {{ end }}
-            {{ else }}
-                <div class="e-content">
-                    {{ .Content }}
-                </div>
-            {{ end }}
-        </div>
-        {{ end }}
+<div class="homepage">
+  
+  <!-- Welcome Letter Section -->
+  <section class="welcome-letter">
+    <div class="letter-content">
+      {{ if .Site.Params.welcome_message }}
+        {{ .Site.Params.welcome_message | markdownify }}
+      {{ else }}
+      <p>Welcome to my corner of the internet.</p>
+      
+      <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
+      
+      <p>You can find my recent writing in the <a href="/posts/">blog archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
+      
+      <p>Thanks for visiting.</p>
+      
+      <p class="signature">— Matt</p>
+      {{ end }}
     </div>
-</div>
-<div class="post-nav">
-    {{ if $paginator.HasPrev }}
-    <span class="prev">
-        <a href="{{ $paginator.Prev.URL }}" title="Previous Page"><span class="arrow">← Newer Posts</span></a>
-    </span>
-    {{ end }}
-    {{ if $paginator.HasNext }}
-    <span class="next">
-        <a href="{{ $paginator.Next.URL }}"><span class="arrow">Older Posts →</span></a>
-    </span>
-    {{ end }}
+  </section>
+
+  <!-- Navigation Links -->
+  <nav class="homepage-nav">
+    <div class="nav-grid">
+      <div class="nav-item">
+        <h3><a href="/posts/">Recent Posts</a></h3>
+        <p>Latest thoughts and updates</p>
+      </div>
+      
+      <div class="nav-item">
+        <h3><a href="/categories/">Categories</a></h3>
+        <p>Browse posts by topic</p>
+      </div>
+      
+      <div class="nav-item">
+        <h3><a href="/archive/">Complete Archive</a></h3>
+        <p>Everything I've published</p>
+      </div>
+      
+      {{ if .Site.Menus.main }}
+      {{ range .Site.Menus.main }}
+      <div class="nav-item">
+        {{ if .Page.Params.redirect_url }}
+        <h3><a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a></h3>
+        {{ else }}
+        <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a></h3>
+        {{ end }}
+        {{ if .Page.Summary }}
+        <p>{{ .Page.Summary }}</p>
+        {{ end }}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </nav>
+
+  <!-- Optional: Recent Posts Preview (can be removed if you want purely static) -->
+  {{ if .Site.Params.show_recent_preview }}
+  <section class="recent-preview">
+    <h2>Latest Posts</h2>
+    <ul class="preview-list">
+      {{ range first 3 (where .Site.RegularPages "Type" "post") }}
+      <li>
+        <a href="{{ .Permalink }}" class="preview-link">
+          <time class="preview-date">{{ .Date.Format "Jan 2" }}</time>
+          <span class="preview-title">
+            {{ if .Title }}
+              {{ .Title }}
+            {{ else }}
+              {{ .Summary | truncate 60 }}
+            {{ end }}
+          </span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="view-all"><a href="/posts/">View all posts →</a></p>
+  </section>
+  {{ end }}
+
 </div>
 {{ end }}
