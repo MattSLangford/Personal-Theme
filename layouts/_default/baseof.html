@@ -4,8 +4,12 @@
 {{ partial "head.html" . }}
 
 <body>
-  {{ if not .IsHome }}
   {{ partial "header.html" . }}
+
+  {{ if not .IsHome }}
+  <div class="home-link">
+    <a href="/">← Home</a>
+  </div>
   {{ end }}
 
   <div class="page-content">
@@ -13,7 +17,6 @@
       {{ block "main" . }}{{ end }}
     </div>
   </div>
-  {{ partial "footer.html" . }}
 
   {{ range .Site.Params.plugins_js }}
   <script src="{{ . }}"></script>

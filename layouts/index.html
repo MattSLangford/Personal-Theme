@@ -1,10 +1,6 @@
 {{ define "main" }}
 <div class="home">
   
-  <div class="logo">
-    <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" width="120" height="120">
-  </div>
-
   <div class="content">
     {{ if .Site.Params.welcome_message }}
       {{ .Site.Params.welcome_message | markdownify }}
