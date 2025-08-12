@@ -94,6 +94,26 @@ header {
 	margin-bottom: 1.5rem;
 }
 
+/* Fix spacing on single post pages where date is in post-header */
+.post-header {
+	margin-bottom: 0.5rem;
+}
+
+/* For posts without titles on single pages, reduce gap after date */
+.post .post-header:not(:has(.p-name)) {
+	margin-bottom: 0.3rem;
+}
+
+/* Ensure content flows nicely after post-header without title */
+.post-header .post-date:last-child {
+	margin-bottom: 0;
+}
+
+/* Override default post-header margin when there's no title */
+.post .post-header:not(:has(h2)):not(:has(.p-name)) {
+	margin-bottom: 0.3rem;
+}
+
 header img.profile_photo {
 	width: 80px;
 	height: 80px;
@@ -117,7 +137,7 @@ header h1 {
 	font-size: 3.2rem;
 	font-weight: 700;
 	margin-bottom: 0.3em;
-	letter-spacing: -0.04em;
+	letter-spacing: -0.01em;
 }
 
 header h1 a {
@@ -577,8 +597,9 @@ pre code {
 }
 
 .microblog_user img {
-	width: 36px;
-	height: 36px;
+	width: 36px !important;
+	height: 36px !important;
+	max-width: 36px !important;
 	border-radius: 50%;
 	margin-right: 0.6rem;
 	object-fit: cover;
