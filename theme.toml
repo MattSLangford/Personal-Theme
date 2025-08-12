@@ -1,0 +1,10 @@
+name = "Tiny Theme (Simplified)"
+description = "A simplified, fast-loading plain text theme for mattlangford.com"
+homepage = "https://mattlangford.com"
+tags = ["blog", "minimal", "simple", "fast"]
+features = ["responsive"]
+min_version = "0.117.0"
+
+[author]
+  name = "Matt Langford"
+  homepage = "https://mattlangford.com"
