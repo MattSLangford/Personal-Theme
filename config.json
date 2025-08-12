@@ -1,6 +1,6 @@
 {
 	"paginate": 20,
 	"params": {
-		"welcome_message": "Welcome to my corner of the internet.\n\nWhether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.\n\nYou can find my recent writing in the [archives](/posts/). I'm also on [Mastodon](https://micro.blog/mtt), [Instagram](https://instagram.com/mattlangford), [X](https://x.com/mattlangford), and [Micro.blog](https://micro.blog/mtt). For work stuff, check out [Desk of Matt](https://deskofmatt.com).\n\nThanks for visiting.\n\n*— Matt*"
+		"welcome_message": "Welcome to my corner of the internet.\n\nWhether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.\n\nThe function of this site has changed, but you can still access all of my [old posts](https://mattlangford.com/posts/). I am also currently writing a [blog for church leaders](https://deskofmatt.com). I have other projects that will be listed here by 14 August 2025, so check back then!  \n\nThanks for visiting.\n\n*— Matt*"
 	}
 }
