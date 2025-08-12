@@ -60,6 +60,21 @@ p {
 	line-height: 1.65;
 }
 
+/* Lists */
+ul, ol {
+	margin-bottom: 1.5rem;
+	padding-left: 1.5rem;
+}
+
+li {
+	margin-bottom: 0.3rem;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+	margin-bottom: 0.5rem;
+	margin-top: 0.3rem;
+}
+
 /* Header */
 header {
 	margin-bottom: 2.5rem;
@@ -76,6 +91,8 @@ header img.profile_photo {
 	transition: all 0.3s ease;
 	cursor: pointer;
 	object-fit: cover;
+	object-position: center;
+	aspect-ratio: 1 / 1;
 }
 
 header img.profile_photo:hover {
@@ -84,7 +101,7 @@ header img.profile_photo:hover {
 }
 
 header h1 {
-	font-size: 2.1rem;
+	font-size: 2.6rem;
 	font-weight: 700;
 	margin-bottom: 0.3em;
 	letter-spacing: -0.03em;
@@ -121,6 +138,12 @@ nav ul {
 	flex-wrap: wrap;
 	gap: 0.4rem;
 	align-items: flex-start;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+nav li {
+	margin-bottom: 0;
 }
 
 nav a {
@@ -297,6 +320,19 @@ img {
 	box-shadow: 0 2px 12px var(--glass-shadow);
 }
 
+/* All avatar/profile images should be perfect circles */
+img[src*="avatar"],
+img[src*="profile"],
+img.avatar,
+img.profile,
+.u-photo,
+.h-card img {
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center;
+	aspect-ratio: 1 / 1;
+}
+
 article img,
 .e-content img,
 .p-summary img {
@@ -310,10 +346,12 @@ article img,
 	flex-wrap: wrap;
 	gap: 0.4rem;
 	margin: 1rem 0;
+	padding-left: 0;
 }
 
 .post-tags li {
 	display: inline-block;
+	margin-bottom: 0;
 }
 
 .post-tags a {
@@ -387,6 +425,11 @@ article img,
 	flex-wrap: wrap;
 	gap: 0.4rem;
 	margin: 1.5rem 0;
+	padding-left: 0;
+}
+
+.reply-buttons li {
+	margin-bottom: 0;
 }
 
 .reply-buttons a,
@@ -520,7 +563,9 @@ pre code {
 	border-radius: 50%;
 	margin-right: 0.6rem;
 	object-fit: cover;
+	object-position: center;
 	flex-shrink: 0;
+	aspect-ratio: 1 / 1;
 }
 
 .microblog_time a {
@@ -672,14 +717,41 @@ hr {
 }
 
 /* Archive styles */
+.archive {
+	margin-bottom: 2rem;
+}
+
+.archive .post-preview,
+.archive .h-entry {
+	margin-bottom: 1.5rem;
+	padding-bottom: 1rem;
+}
+
+.archive .post-title,
+.archive .p-name {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+.archive .post-title a {
+	font-weight: 600;
+}
+
+.archive-categories {
+	margin-bottom: 2rem;
+}
+
 .archive-categories h3 {
 	margin-bottom: 0.8rem;
 	color: var(--text-primary);
+	font-size: 1.2rem;
 }
 
 .archive-categories ul {
 	list-style: none;
 	margin-bottom: 2rem;
+	padding-left: 0;
 }
 
 .archive-categories li {
@@ -687,7 +759,8 @@ hr {
 }
 
 .full-archives .h-entry {
-	padding: 0.6rem 0;
+	padding: 0.5rem 0;
+	margin-bottom: 0.8rem;
 	border-bottom: 1px solid var(--border-light);
 }
 
@@ -695,10 +768,41 @@ hr {
 .post-list {
 	list-style: none;
 	padding: 0;
+	margin-bottom: 1.5rem;
+}
+
+.post-list li {
+	margin-bottom: 0;
 }
 
 ul.post-list a.u-url {
 	text-decoration: none;
+}
+
+/* Inline buttons and elements spacing */
+.e-content a.read-more,
+.e-content button,
+.e-content .reply-buttons,
+.p-summary a.read-more,
+.p-summary button,
+.p-summary .reply-buttons {
+	margin-bottom: 1rem;
+}
+
+.e-content p:has(a.read-more),
+.e-content p:has(button),
+.p-summary p:has(a.read-more),
+.p-summary p:has(button) {
+	margin-bottom: 1.5rem;
+}
+
+/* Gear page and similar inline button styling */
+.e-content a[href*="paypal"],
+.e-content a[href*="stripe"],
+.e-content a[href*="buy"],
+.e-content a[href*="purchase"] {
+	margin-bottom: 1rem;
+	display: inline-block;
 }
 
 /* Responsive adjustments */
@@ -721,7 +825,7 @@ ul.post-list a.u-url {
 	}
 	
 	header h1 {
-		font-size: 1.9rem;
+		font-size: 2.2rem;
 	}
 	
 	nav ul {
