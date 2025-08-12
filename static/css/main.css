@@ -50,9 +50,9 @@ h1, h2, h3, h4, h5, h6 {
 	color: var(--text-primary);
 }
 
-h1 { font-size: 2.1rem; }
-h2 { font-size: 1.6rem; }
-h3 { font-size: 1.3rem; }
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.4rem; }
 
 p {
 	margin-bottom: 1.2em;
@@ -81,11 +81,24 @@ header {
 	text-align: left;
 }
 
+/* Reduce header margin on posts without titles */
+.post:not(:has(.post-title)) header,
+.h-entry:not(:has(.p-name)) header,
+.post-preview:not(:has(.post-title)) header {
+	margin-bottom: 1.5rem;
+}
+
+/* Alternative for browsers without :has() support */
+.post .post-date:first-child ~ header,
+.h-entry .post-date:first-child ~ header {
+	margin-bottom: 1.5rem;
+}
+
 header img.profile_photo {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 	border: 2px solid var(--glass-border);
 	box-shadow: 0 2px 8px var(--glass-shadow);
 	transition: all 0.3s ease;
@@ -101,10 +114,10 @@ header img.profile_photo:hover {
 }
 
 header h1 {
-	font-size: 2.6rem;
+	font-size: 3.2rem;
 	font-weight: 700;
 	margin-bottom: 0.3em;
-	letter-spacing: -0.03em;
+	letter-spacing: -0.04em;
 }
 
 header h1 a {
@@ -222,10 +235,16 @@ a.post-date:focus {
 
 /* Post Titles */
 .post-title, .p-name {
-	font-size: 1.3rem;
+	font-size: 2rem;
 	font-weight: 650;
 	line-height: 1.25;
 	margin-bottom: 0.8rem;
+}
+
+/* Fix span.p-name from inheriting wrong font size */
+span.p-name {
+	font-size: inherit;
+	font-weight: inherit;
 }
 
 .post-title a {
@@ -801,8 +820,36 @@ ul.post-list a.u-url {
 .e-content a[href*="stripe"],
 .e-content a[href*="buy"],
 .e-content a[href*="purchase"] {
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	display: inline-block;
+}
+
+/* Fix button inside anchor - this is not semantic, should be avoided */
+a button {
+	margin-bottom: 1.5rem;
+	display: block;
+}
+
+/* Better: style the anchor to look like a button instead */
+a.button-style {
+	display: inline-block;
+	padding: 0.6rem 1.2rem;
+	background: var(--accent-blue);
+	border: 1px solid var(--accent-blue);
+	border-radius: 6px;
+	color: var(--pure-white);
+	text-decoration: none;
+	font-size: 0.95rem;
+	font-weight: 500;
+	transition: all 0.2s ease;
+	margin-bottom: 1.5rem;
+}
+
+a.button-style:hover {
+	background: var(--accent-hover);
+	border-color: var(--accent-hover);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
 /* Responsive adjustments */
@@ -825,7 +872,15 @@ ul.post-list a.u-url {
 	}
 	
 	header h1 {
-		font-size: 2.2rem;
+		font-size: 2.8rem;
+	}
+	
+	h1 { font-size: 2.4rem; }
+	h2 { font-size: 1.8rem; }
+	h3 { font-size: 1.3rem; }
+	
+	.post-title, .p-name {
+		font-size: 1.8rem;
 	}
 	
 	nav ul {
