@@ -1,83 +1,25 @@
 {{ define "main" }}
-<div class="homepage">
+<div class="home">
   
-  <!-- Welcome Letter Section -->
-  <section class="welcome-letter">
-    <div class="letter-content">
-      {{ if .Site.Params.welcome_message }}
-        {{ .Site.Params.welcome_message | markdownify }}
-      {{ else }}
-      <p>Welcome to my corner of the internet.</p>
-      
-      <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
-      
-      <p>You can find my recent writing in the <a href="/posts/">blog archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
-      
-      <p>Thanks for visiting.</p>
-      
-      <p class="signature">— Matt</p>
-      {{ end }}
-    </div>
-  </section>
+  <div class="logo">
+    <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" width="120" height="120">
+  </div>
 
-  <!-- Navigation Links -->
-  <nav class="homepage-nav">
-    <div class="nav-grid">
-      <div class="nav-item">
-        <h3><a href="/posts/">Recent Posts</a></h3>
-        <p>Latest thoughts and updates</p>
-      </div>
-      
-      <div class="nav-item">
-        <h3><a href="/categories/">Categories</a></h3>
-        <p>Browse posts by topic</p>
-      </div>
-      
-      <div class="nav-item">
-        <h3><a href="/archive/">Complete Archive</a></h3>
-        <p>Everything I've published</p>
-      </div>
-      
-      {{ if .Site.Menus.main }}
-      {{ range .Site.Menus.main }}
-      <div class="nav-item">
-        {{ if .Page.Params.redirect_url }}
-        <h3><a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a></h3>
-        {{ else }}
-        <h3><a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a></h3>
-        {{ end }}
-        {{ if .Page.Summary }}
-        <p>{{ .Page.Summary }}</p>
-        {{ end }}
-      </div>
-      {{ end }}
-      {{ end }}
-    </div>
-  </nav>
-
-  <!-- Optional: Recent Posts Preview (can be removed if you want purely static) -->
-  {{ if .Site.Params.show_recent_preview }}
-  <section class="recent-preview">
-    <h2>Latest Posts</h2>
-    <ul class="preview-list">
-      {{ range first 3 (where .Site.RegularPages "Type" "post") }}
-      <li>
-        <a href="{{ .Permalink }}" class="preview-link">
-          <time class="preview-date">{{ .Date.Format "Jan 2" }}</time>
-          <span class="preview-title">
-            {{ if .Title }}
-              {{ .Title }}
-            {{ else }}
-              {{ .Summary | truncate 60 }}
-            {{ end }}
-          </span>
-        </a>
-      </li>
-      {{ end }}
-    </ul>
-    <p class="view-all"><a href="/posts/">View all posts →</a></p>
-  </section>
-  {{ end }}
+  <div class="content">
+    {{ if .Site.Params.welcome_message }}
+      {{ .Site.Params.welcome_message | markdownify }}
+    {{ else }}
+    <p>Welcome to my corner of the internet.</p>
+    
+    <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
+    
+    <p>You can find my recent writing in the <a href="/posts/">archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
+    
+    <p>Thanks for visiting.</p>
+    
+    <p><em>— Matt</em></p>
+    {{ end }}
+  </div>
 
 </div>
 {{ end }}
