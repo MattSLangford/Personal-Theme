@@ -902,7 +902,8 @@ input[type="submit"]:hover {
 	text-transform: uppercase;
 }
 
-/* Textarea Element Only */
+/* Textarea Elements */
+.microblog_reply_textarea textarea,
 textarea.microblog_reply_textarea {
 	width: 100%;
 	min-height: 80px;
@@ -917,13 +918,16 @@ textarea.microblog_reply_textarea {
 	margin-bottom: 1rem;
 }
 
+.microblog_reply_textarea textarea:focus,
 textarea.microblog_reply_textarea:focus {
 	outline: none;
 	border: 2px inset #000080;
 	background: #fffffe;
 }
 
-/* Button Element Only */
+/* Button Elements */
+.microblog_reply_button input,
+.microblog_reply_button button,
 button.microblog_reply_button,
 input.microblog_reply_button {
 	background: linear-gradient(135deg, #d0d0d0 0%, #c0c0c0 50%, #b0b0b0 100%);
@@ -939,6 +943,8 @@ input.microblog_reply_button {
 	margin-right: 0.5rem;
 }
 
+.microblog_reply_button input:hover,
+.microblog_reply_button button:hover,
 button.microblog_reply_button:hover,
 input.microblog_reply_button:hover {
 	background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 50%, #c0c0c0 100%);
@@ -946,6 +952,8 @@ input.microblog_reply_button:hover {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.microblog_reply_button input:active,
+.microblog_reply_button button:active,
 button.microblog_reply_button:active,
 input.microblog_reply_button:active {
 	border: 2px inset #c0c0c0;
