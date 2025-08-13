@@ -2,7 +2,7 @@
 <div class="home">
   <div class="letterhead">
     <div class="letterhead-logo">
-      <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" class="profile_photo u-photo" width="80" height="80">
+      <div class="avatar-text">{{ .Site.Title }}</div>
     </div>
     <div class="content">
       {{ if .Site.Params.welcome_message }}
@@ -16,7 +16,7 @@
       
       <p>Thanks for visiting.</p>
       
-      <p><em>— Matt</em></p>
+      <p>Matt</p>
       {{ end }}
     </div>
   </div>
