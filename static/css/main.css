@@ -1067,6 +1067,11 @@ input.microblog_reply_button:active {
 		height: 8px;
 	}
 	
+	.battery-indicator::after {
+		top: 2px;
+		height: 4px;
+	}
+	
 	.home .letterhead {
 		margin: 1rem 0;
 	}
