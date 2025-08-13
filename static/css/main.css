@@ -880,7 +880,7 @@ input[type="submit"]:hover {
 	font-weight: normal;
 }
 
-/* Reply Form Section */
+/* Reply Form Section - Container Only */
 .microblog_reply_form {
 	margin-top: 1.5rem;
 	border: 2px inset #c0c0c0;
@@ -902,8 +902,8 @@ input[type="submit"]:hover {
 	text-transform: uppercase;
 }
 
-.microblog_reply_textarea,
-.microblog_reply_form textarea {
+/* Textarea Element Only */
+textarea.microblog_reply_textarea {
 	width: 100%;
 	min-height: 80px;
 	border: 2px inset #c0c0c0;
@@ -917,16 +917,15 @@ input[type="submit"]:hover {
 	margin-bottom: 1rem;
 }
 
-.microblog_reply_textarea:focus,
-.microblog_reply_form textarea:focus {
+textarea.microblog_reply_textarea:focus {
 	outline: none;
 	border: 2px inset #000080;
 	background: #fffffe;
 }
 
-.microblog_reply_button,
-.microblog_reply_form button,
-.microblog_reply_form input[type="submit"] {
+/* Button Element Only */
+button.microblog_reply_button,
+input.microblog_reply_button {
 	background: linear-gradient(135deg, #d0d0d0 0%, #c0c0c0 50%, #b0b0b0 100%);
 	border: 2px outset #c0c0c0;
 	padding: 0.5rem 1.5rem;
@@ -940,17 +939,15 @@ input[type="submit"]:hover {
 	margin-right: 0.5rem;
 }
 
-.microblog_reply_button:hover,
-.microblog_reply_form button:hover,
-.microblog_reply_form input[type="submit"]:hover {
+button.microblog_reply_button:hover,
+input.microblog_reply_button:hover {
 	background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 50%, #c0c0c0 100%);
 	transform: translateY(-1px);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.microblog_reply_button:active,
-.microblog_reply_form button:active,
-.microblog_reply_form input[type="submit"]:active {
+button.microblog_reply_button:active,
+input.microblog_reply_button:active {
 	border: 2px inset #c0c0c0;
 	background: linear-gradient(135deg, #a0a0a0 0%, #b0b0b0 50%, #c0c0c0 100%);
 	transform: translateY(1px);
