@@ -383,20 +383,6 @@ body::after {
 	color: #000000;
 }
 
-.home .content p:last-child {
-	text-align: right;
-	margin-top: 2rem;
-	margin-bottom: 0;
-	font-style: normal;
-	color: #000000;
-	font-size: 1rem;
-}
-
-.home .content p:last-child::before {
-	content: '-- ';
-	color: #000000;
-}
-
 @keyframes text-glow {
 	0%, 100% { text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); }
 	50% { text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8), 0 0 2px rgba(0, 0, 255, 0.3); }
