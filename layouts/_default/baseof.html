@@ -4,12 +4,10 @@
 {{ partial "head.html" . }}
 
 <body>
+  {{ if .IsHome }}
   {{ partial "header.html" . }}
-
-  {{ if not .IsHome }}
-  <div class="home-link">
-    <a href="/">← Home</a>
-  </div>
+  {{ else }}
+  {{ partial "blog-header.html" . }}
   {{ end }}
 
   <div class="page-content">
