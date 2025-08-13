@@ -19,6 +19,45 @@
   {{ range .Site.Params.plugins_js }}
   <script src="{{ . }}"></script>
   {{ end }}
+
+  <div class="retro-status-bar">
+    <div class="status-left">
+      <div class="status-item">
+        <span class="modem-status"></span>
+        <span>ONLINE</span>
+      </div>
+      <div class="status-item">
+        <span>CPU: 33MHz</span>
+      </div>
+    </div>
+    <div class="status-right">
+      <div class="status-item">
+        <span>RAM: 8MB</span>
+      </div>
+      <div class="status-item">
+        <span>BAT:</span>
+        <div class="battery-indicator"></div>
+      </div>
+      <div class="status-item">
+        <span id="retro-time">12:00 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Update the retro time display
+    function updateRetroTime() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit', 
+        hour12: true 
+      });
+      document.getElementById('retro-time').textContent = timeStr;
+    }
+    updateRetroTime();
+    setInterval(updateRetroTime, 60000);
+  </script>
 </body>
 
 </html>
