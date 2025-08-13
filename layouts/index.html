@@ -1,21 +1,21 @@
 {{ define "main" }}
 <div class="home">
-  
-  <div class="content">
-    {{ if .Site.Params.welcome_message }}
-      {{ .Site.Params.welcome_message | markdownify }}
-    {{ else }}
-    <p>Welcome to my corner of the internet.</p>
-    
-    <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
-    
-    <p>You can find my recent writing in the <a href="/posts/">archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
-    
-    <p>Thanks for visiting.</p>
-    
-    <p><em>— Matt</em></p>
-    {{ end }}
+  <div class="letterhead">
+    <div class="content">
+      {{ if .Site.Params.welcome_message }}
+        {{ .Site.Params.welcome_message | markdownify }}
+      {{ else }}
+      <p>Welcome to my corner of the internet.</p>
+      
+      <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
+      
+      <p>You can find my recent writing in the <a href="/posts/">archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
+      
+      <p>Thanks for visiting.</p>
+      
+      <p><em>— Matt</em></p>
+      {{ end }}
+    </div>
   </div>
-
 </div>
 {{ end }}
