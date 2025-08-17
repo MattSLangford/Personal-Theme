@@ -1,18 +1,20 @@
 <header class="site-header">
 	<div class="header-container">
-		<div class="site-title">
+		<div class="site-branding">
 			<img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" class="site-avatar">
 			<h1><a href="/">{{ .Site.Title }}</a></h1>
 		</div>
-		<nav class="site-nav">
-			<a href="/" class="nav-link{{ if .IsHome }} active{{ end }}">Home</a>
+		
+		<button class="menu-toggle" aria-label="Toggle menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		
+		<nav class="main-nav">
+			<a href="/" class="nav-item{{ if .IsHome }} current{{ end }}">Home</a>
 			{{ range .Site.Menus.main }}
-			<a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
-			{{ end }}
-			{{ range .Site.Pages }}
-			{{ if and (eq .Type "page") (.Params.menu) }}
-			<a href="{{ .Permalink }}" class="nav-link">{{ .Title }}</a>
-			{{ end }}
+			<a href="{{ .URL }}" class="nav-item">{{ .Name }}</a>
 			{{ end }}
 		</nav>
 	</div>
