@@ -1,25 +1,59 @@
 {{ define "main" }}
-<div class="home">
-  <div class="letterhead">
-    <div class="letterhead-logo">
-      <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" class="profile_photo u-photo" width="80" height="80">
-    </div>
-    <div class="content">
-      {{ if .Site.Params.welcome_message }}
-        {{ .Site.Params.welcome_message | markdownify }}
-      {{ else }}
-      <p>Welcome to my corner of the internet.</p>
-      
-      <p>This is where I share my thoughts, projects, and discoveries. Whether you're here for the latest posts, looking for something specific, or just browsing around, I'm glad you stopped by.</p>
-      
-      <p>You can find my recent writing in the <a href="/posts/">archives</a>, browse by <a href="/categories/">categories</a>, or explore the <a href="/archive/">complete archive</a> of everything I've published.</p>
-      
-      <p>Thanks for visiting.</p>
-      
-      <p>-- Matt</p>
+<div class="home-blog">
+  <div class="posts h-feed">
+    <div class="post_list" role="main">
+      {{ $paginator := .Paginate (where .Site.RegularPages.ByDate.Reverse "Type" "post") }}
+      {{ range .Paginator.Pages }}
+      <article class="post-preview h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}{{ if not .Title }} untitled-post{{ end }}">
+        <header class="post-header">
+          <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>
+        </header>
+        
+        {{ if .Title }}
+          <h2 class="post-title p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          {{ if in .RawContent "<!--more-->" }}
+            <div class="p-summary">
+              {{ $splitContents := split .RawContent "<!--more-->" }}
+              {{ $summary := index $splitContents 0 }}
+              {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
+              {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
+              {{ $summary | markdownify }}
+              <p><a class="read-more" href="{{ .Permalink }}">Read More →</a></p>
+            </div>
+          {{ else if .Params.custom_summary }}
+          <div class="p-summary">
+            <p>{{ .Summary | safeHTML }}</p>
+          </div>
+          {{ else }}
+            <div class="e-content">
+              {{ .Content }}
+            </div>
+          {{ end }}
+        {{ else }}
+          <div class="e-content">
+            {{ .Content }}
+          </div>
+        {{ end }}
+        
+        {{ if .Params.categories }}
+        <ul class="post-tags">
+          {{ range .Params.categories }} {{ $href := print (absURL "categories/") (urlize .) }}
+          <li><a href="{{ $href }}">#{{ . }}</a></li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </article>
       {{ end }}
-      <p>P.S. Want more? <a href="https://deskofmatt.com/subscribe-embed/">Subscribe via electronic mail</a>.
     </div>
   </div>
+  
+  <nav class="post-nav">
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}" title="Previous Page" class="prev">← Newer Posts</a>
+    {{ end }}
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}" class="next">Older Posts →</a>
+    {{ end }}
+  </nav>
 </div>
 {{ end }}
