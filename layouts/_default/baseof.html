@@ -16,56 +16,11 @@
     </div>
   </div>
 
+  {{ partial "footer.html" . }}
+
   {{ range .Site.Params.plugins_js }}
   <script src="{{ . }}"></script>
   {{ end }}
-
-  <div class="retro-status-bar">
-    <div class="status-left">
-      <div class="status-item">
-        <span class="modem-status"></span>
-        <span>ONLINE</span>
-      </div>
-      <div class="status-item cpu-ram">
-        <span>CPU: 33MHz</span>
-      </div>
-    </div>
-    <div class="status-center">
-      <a href="https://micro.blog" target="_blank" class="status-item status-link">
-        <span>Powered by Micro.blog</span>
-      </a>
-      <a href="https://letterbird.co/matt" target="_blank" class="status-item status-link">
-        <span>Contact</span>
-      </a>
-    </div>
-    <div class="status-right">
-      <div class="status-item cpu-ram">
-        <span>RAM: 8MB</span>
-      </div>
-      <div class="status-item">
-        <span>BAT:</span>
-        <div class="battery-indicator"></div>
-      </div>
-      <div class="status-item">
-        <span id="retro-time">12:00 PM</span>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Update the retro time display
-    function updateRetroTime() {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('en-US', { 
-        hour: 'numeric', 
-        minute: '2-digit', 
-        hour12: true 
-      });
-      document.getElementById('retro-time').textContent = timeStr;
-    }
-    updateRetroTime();
-    setInterval(updateRetroTime, 60000);
-  </script>
 </body>
 
 </html>

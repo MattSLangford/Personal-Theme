@@ -1,8 +1,8 @@
-name = "Tiny Theme (Simplified)"
-description = "A simplified, fast-loading plain text theme for mattlangford.com"
+name = "Modern Blog Theme"
+description = "A fast, modern, typography-first blog theme with unique card-based layout"
 homepage = "https://mattlangford.com"
-tags = ["blog", "minimal", "simple", "fast"]
-features = ["responsive"]
+tags = ["blog", "modern", "typography", "fast", "minimal"]
+features = ["responsive", "accessibility", "micro.blog"]
 min_version = "0.117.0"
 
 [author]
