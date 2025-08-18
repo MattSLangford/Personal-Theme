@@ -1,0 +1,113 @@
+<style>
+:root {
+  --primary-color: {{ .Site.Params.primary_link_color | default "#2563eb" }};
+  --untitled-color: {{ .Site.Params.untitled_post_color | default "#2563eb" }};
+  --titled-color: {{ .Site.Params.titled_post_color | default "#059669" }};
+  --header-bg: {{ .Site.Params.header_background_color | default "#ffffff" }};
+  --body-bg: {{ .Site.Params.body_background_color | default "#fafbfc" }};
+  --card-bg: {{ .Site.Params.card_background_color | default "#ffffff" }};
+}
+
+/* Apply custom colors */
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+  filter: brightness(0.9);
+}
+
+.site-branding h1 a:hover {
+  color: var(--primary-color);
+}
+
+.nav-item.current {
+  color: var(--primary-color);
+}
+
+.nav-item.current::before {
+  background: var(--primary-color);
+}
+
+.menu-toggle:hover span {
+  background: var(--primary-color);
+}
+
+.site-header {
+  background: var(--header-bg);
+}
+
+body {
+  background: var(--body-bg);
+}
+
+.page-content {
+  background: var(--body-bg);
+}
+
+.post-preview,
+.post,
+.h-entry {
+  background: var(--card-bg);
+}
+
+.site-footer {
+  background: var(--header-bg);
+}
+
+.site-footer a:hover {
+  color: var(--primary-color);
+}
+
+.untitled-post {
+  border-left-color: var(--untitled-color);
+}
+
+.untitled-post .post-date {
+  color: var(--untitled-color);
+}
+
+.post-preview:not(.untitled-post) {
+  border-left-color: var(--titled-color);
+}
+
+.post-preview:not(.untitled-post) .post-date {
+  color: var(--titled-color);
+}
+
+blockquote {
+  border-left-color: var(--primary-color);
+}
+
+button,
+input[type="submit"] {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  filter: brightness(0.9);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+}
+
+{{ if not .Site.Params.show_post_dates }}
+.post-date {
+  display: none;
+}
+{{ end }}
+
+{{ if not .Site.Params.enable_smooth_animations }}
+* {
+  transition: none !important;
+  animation: none !important;
+}
+{{ end }}
+</style>
