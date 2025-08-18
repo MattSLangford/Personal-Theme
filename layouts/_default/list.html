@@ -12,7 +12,7 @@
       {{ range .Paginator.Pages }}
       <article class="post-preview h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}{{ if not .Title }} untitled-post{{ end }}">
         <header class="post-header">
-          <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>
+          <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "2 Jan 2006" }}</time></a>
         </header>
         
         {{ if .Title }}

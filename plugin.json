@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "title": "Typeset Theme",
   "description": "A modern, multilingual, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, internationalization support, and comprehensive Micro.blog integration.",
   "fields": [
@@ -31,30 +31,6 @@
       "field": "params.custom_avatar",
       "label": "Custom Avatar URL (optional)",
       "type": "string"
-    },
-    {
-      "field": "params.show_post_dates",
-      "label": "Show Post Dates",
-      "type": "boolean",
-      "default": true
-    },
-    {
-      "field": "params.enable_smooth_animations",
-      "label": "Enable Smooth Animations",
-      "type": "boolean",
-      "default": true
-    },
-    {
-      "field": "params.include_conversation",
-      "label": "Show Conversation Threads",
-      "type": "boolean",
-      "default": true
-    },
-    {
-      "field": "params.show_reply_buttons",
-      "label": "Show Reply Buttons on Posts",
-      "type": "boolean",
-      "default": true
     }
   ]
 }

@@ -1,24 +1,4 @@
 <style>
-{{ if eq .Site.Params.show_post_dates false }}
-.post-date,
-a.post-date {
-  display: none !important;
-}
-{{ end }}
-
-{{ if eq .Site.Params.enable_smooth_animations false }}
-* {
-  transition: none !important;
-  animation: none !important;
-}
-{{ end }}
-
-{{ if eq .Site.Params.show_reply_buttons false }}
-.reply-buttons {
-  display: none !important;
-}
-{{ end }}
-
 /* Larger text for reply form buttons */
 .microblog_reply_button input,
 .microblog_reply_button button,

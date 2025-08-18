@@ -543,7 +543,8 @@ article img,
 
 /* Photo page specific fixes */
 .photos {
-  padding: 0 var(--space-xl);
+  padding: 0;
+  margin: 0 calc(-1 * var(--space-xl));
 }
 
 .photos img {
@@ -551,11 +552,25 @@ article img,
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   margin: var(--space-sm);
+  display: inline-block;
 }
 
 .photos img:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+/* Ensure photos container has consistent spacing */
+.photos {
+  text-align: center;
+}
+
+.photos img:first-child {
+  margin-left: var(--space-sm);
+}
+
+.photos img:last-child {
+  margin-right: var(--space-sm);
 }
 
 /* Fix for linked images */
