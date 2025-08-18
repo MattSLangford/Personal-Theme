@@ -1,109 +1,4 @@
 <style>
-{{ if .Site.Params.primary_link_color }}
-:root {
-  --primary-color: {{ .Site.Params.primary_link_color }};
-}
-
-a {
-  color: var(--primary-color);
-}
-
-a:hover {
-  color: var(--primary-color);
-  filter: brightness(0.9);
-}
-
-.site-branding h1 a:hover {
-  color: var(--primary-color);
-}
-
-.nav-item.current {
-  color: var(--primary-color);
-}
-
-.nav-item.current::before {
-  background: var(--primary-color);
-}
-
-.menu-toggle:hover span {
-  background: var(--primary-color);
-}
-
-.site-footer a:hover {
-  color: var(--primary-color);
-}
-
-blockquote {
-  border-left-color: var(--primary-color);
-}
-
-button,
-input[type="submit"] {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-button:hover,
-input[type="submit"]:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  filter: brightness(0.9);
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--primary-color);
-}
-{{ end }}
-
-{{ if .Site.Params.untitled_post_color }}
-.untitled-post {
-  border-left-color: {{ .Site.Params.untitled_post_color }};
-}
-
-.untitled-post .post-date {
-  color: {{ .Site.Params.untitled_post_color }};
-}
-{{ end }}
-
-{{ if .Site.Params.titled_post_color }}
-.post-preview:not(.untitled-post) {
-  border-left-color: {{ .Site.Params.titled_post_color }};
-}
-
-.post-preview:not(.untitled-post) .post-date {
-  color: {{ .Site.Params.titled_post_color }};
-}
-{{ end }}
-
-{{ if .Site.Params.header_background_color }}
-.site-header {
-  background: {{ .Site.Params.header_background_color }};
-}
-
-.site-footer {
-  background: {{ .Site.Params.header_background_color }};
-}
-{{ end }}
-
-{{ if .Site.Params.body_background_color }}
-body {
-  background: {{ .Site.Params.body_background_color }};
-}
-
-.page-content {
-  background: {{ .Site.Params.body_background_color }};
-}
-{{ end }}
-
-{{ if .Site.Params.card_background_color }}
-.post-preview,
-.post,
-.h-entry {
-  background: {{ .Site.Params.card_background_color }};
-}
-{{ end }}
-
 {{ if eq .Site.Params.show_post_dates false }}
 .post-date,
 a.post-date {
@@ -115,6 +10,12 @@ a.post-date {
 * {
   transition: none !important;
   animation: none !important;
+}
+{{ end }}
+
+{{ if eq .Site.Params.show_reply_buttons false }}
+.reply-buttons {
+  display: none !important;
 }
 {{ end }}
 </style>

@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "title": "Typeset Theme",
-  "description": "A modern, typography-first theme for Micro.blog with clean design and excellent readability. Features universal navigation, post differentiation, and comprehensive Micro.blog integration.",
+  "description": "A modern, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, and comprehensive Micro.blog integration.",
   "fields": [
     {
       "field": "paginate",
@@ -13,24 +13,6 @@
       "field": "params.custom_avatar",
       "label": "Custom Avatar URL (optional)",
       "type": "string"
-    },
-    {
-      "field": "params.primary_link_color",
-      "label": "Primary Link Color",
-      "type": "color",
-      "default": "#2563eb"
-    },
-    {
-      "field": "params.untitled_post_color",
-      "label": "Untitled Post Accent Color",
-      "type": "color",
-      "default": "#2563eb"
-    },
-    {
-      "field": "params.titled_post_color",
-      "label": "Titled Post Accent Color",
-      "type": "color",
-      "default": "#059669"
     },
     {
       "field": "params.show_post_dates",
@@ -45,22 +27,16 @@
       "default": true
     },
     {
-      "field": "params.header_background_color",
-      "label": "Header Background Color",
-      "type": "color",
-      "default": "#ffffff"
+      "field": "params.include_conversation",
+      "label": "Show Conversation Threads",
+      "type": "boolean",
+      "default": true
     },
     {
-      "field": "params.body_background_color",
-      "label": "Body Background Color",
-      "type": "color",
-      "default": "#fafbfc"
-    },
-    {
-      "field": "params.card_background_color",
-      "label": "Post Card Background Color",
-      "type": "color",
-      "default": "#ffffff"
+      "field": "params.show_reply_buttons",
+      "label": "Show Reply Buttons on Posts",
+      "type": "boolean",
+      "default": true
     }
   ]
 }
