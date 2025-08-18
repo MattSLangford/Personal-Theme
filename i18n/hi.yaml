@@ -1,0 +1,62 @@
+- id: archive
+  translation: "संग्रह"
+- id: categories
+  translation: "श्रेणियां"
+- id: full_post_list
+  translation: "पूरी पोस्ट सूची"
+- id: home
+  translation: "मुख्य पृष्ठ"
+- id: about
+  translation: "के बारे में"
+- id: posts
+  translation: "पोस्ट"
+- id: read_more
+  translation: "और पढ़ें"
+- id: newer_posts
+  translation: "नई पोस्ट"
+- id: older_posts
+  translation: "पुरानी पोस्ट"
+- id: comments
+  translation: "टिप्पणियां"
+- id: post_reply
+  translation: "उत्तर पोस्ट करें"
+- id: reply_by_email
+  translation: "ईमेल द्वारा उत्तर दें"
+- id: conversation_on_microblog
+  translation: "Micro.blog पर बातचीत"
+- id: reply_on_mastodon
+  translation: "Mastodon पर उत्तर दें"
+- id: search
+  translation: "खोजें"
+- id: powered_by
+  translation: "द्वारा संचालित"
+- id: hosted_by
+  translation: "द्वारा होस्ट किया गया"
+- id: designed_by
+  translation: "♥ के साथ डिज़ाइन किया गया"
+- id: all_rights_reserved
+  translation: "सभी अधिकार सुरक्षित"
+- id: posted_on
+  translation: "पर पोस्ट किया गया"
+- id: by_author
+  translation: "द्वारा"
+- id: tag
+  translation: "टैग"
+- id: category
+  translation: "श्रेणी"
+- id: share
+  translation: "साझा करें"
+- id: toggle_menu
+  translation: "मेनू टॉगल करें"
+- id: close_menu
+  translation: "मेनू बंद करें"
+- id: loading
+  translation: "लोड हो रहा है"
+- id: error
+  translation: "त्रुटि"
+- id: authentication_required
+  translation: "प्रमाणीकरण आवश्यक"
+- id: kudos
+  translation: "धन्यवाद"
+- id: replies
+  translation: "उत्तर"

@@ -1,0 +1,62 @@
+- id: archive
+  translation: "الأرشيف"
+- id: categories
+  translation: "الفئات"
+- id: full_post_list
+  translation: "قائمة المقالات الكاملة"
+- id: home
+  translation: "الرئيسية"
+- id: about
+  translation: "حول"
+- id: posts
+  translation: "المقالات"
+- id: read_more
+  translation: "اقرأ المزيد"
+- id: newer_posts
+  translation: "مقالات أحدث"
+- id: older_posts
+  translation: "مقالات أقدم"
+- id: comments
+  translation: "التعليقات"
+- id: post_reply
+  translation: "نشر رد"
+- id: reply_by_email
+  translation: "الرد بالبريد الإلكتروني"
+- id: conversation_on_microblog
+  translation: "المحادثة على Micro.blog"
+- id: reply_on_mastodon
+  translation: "الرد على Mastodon"
+- id: search
+  translation: "البحث"
+- id: powered_by
+  translation: "مدعوم بواسطة"
+- id: hosted_by
+  translation: "مستضاف بواسطة"
+- id: designed_by
+  translation: "مصمم بـ ♥ بواسطة"
+- id: all_rights_reserved
+  translation: "جميع الحقوق محفوظة"
+- id: posted_on
+  translation: "نُشر في"
+- id: by_author
+  translation: "بواسطة"
+- id: tag
+  translation: "وسم"
+- id: category
+  translation: "فئة"
+- id: share
+  translation: "مشاركة"
+- id: toggle_menu
+  translation: "تبديل القائمة"
+- id: close_menu
+  translation: "إغلاق القائمة"
+- id: loading
+  translation: "جاري التحميل"
+- id: error
+  translation: "خطأ"
+- id: authentication_required
+  translation: "المصادقة مطلوبة"
+- id: kudos
+  translation: "تقدير"
+- id: replies
+  translation: "الردود"

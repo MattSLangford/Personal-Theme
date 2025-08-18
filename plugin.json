@@ -1,8 +1,26 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "title": "Typeset Theme",
-  "description": "A modern, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, and comprehensive Micro.blog integration.",
+  "description": "A modern, multilingual, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, internationalization support, and comprehensive Micro.blog integration.",
   "fields": [
+    {
+      "field": "defaultContentLanguage",
+      "label": "Default Language",
+      "type": "select",
+      "options": [
+        {"value": "en", "label": "English"},
+        {"value": "es", "label": "Español (Spanish)"},
+        {"value": "fr", "label": "Français (French)"},
+        {"value": "de", "label": "Deutsch (German)"},
+        {"value": "pt", "label": "Português (Portuguese)"},
+        {"value": "zh", "label": "中文 (Chinese)"},
+        {"value": "ja", "label": "日本語 (Japanese)"},
+        {"value": "ar", "label": "العربية (Arabic)"},
+        {"value": "ru", "label": "Русский (Russian)"},
+        {"value": "hi", "label": "हिन्दी (Hindi)"}
+      ],
+      "default": "en"
+    },
     {
       "field": "paginate",
       "label": "Posts per Page",

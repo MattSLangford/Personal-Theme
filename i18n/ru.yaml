@@ -1,0 +1,62 @@
+- id: archive
+  translation: "Архив"
+- id: categories
+  translation: "Категории"
+- id: full_post_list
+  translation: "Полный список записей"
+- id: home
+  translation: "Главная"
+- id: about
+  translation: "О сайте"
+- id: posts
+  translation: "Записи"
+- id: read_more
+  translation: "Читать далее"
+- id: newer_posts
+  translation: "Новые записи"
+- id: older_posts
+  translation: "Старые записи"
+- id: comments
+  translation: "Комментарии"
+- id: post_reply
+  translation: "Опубликовать ответ"
+- id: reply_by_email
+  translation: "Ответить по электронной почте"
+- id: conversation_on_microblog
+  translation: "Беседа на Micro.blog"
+- id: reply_on_mastodon
+  translation: "Ответить в Mastodon"
+- id: search
+  translation: "Поиск"
+- id: powered_by
+  translation: "Работает на"
+- id: hosted_by
+  translation: "Размещено на"
+- id: designed_by
+  translation: "Разработано с ♥"
+- id: all_rights_reserved
+  translation: "Все права защищены"
+- id: posted_on
+  translation: "Опубликовано"
+- id: by_author
+  translation: "Автор"
+- id: tag
+  translation: "Тег"
+- id: category
+  translation: "Категория"
+- id: share
+  translation: "Поделиться"
+- id: toggle_menu
+  translation: "Переключить меню"
+- id: close_menu
+  translation: "Закрыть меню"
+- id: loading
+  translation: "Загрузка"
+- id: error
+  translation: "Ошибка"
+- id: authentication_required
+  translation: "Требуется аутентификация"
+- id: kudos
+  translation: "Благодарность"
+- id: replies
+  translation: "Ответы"

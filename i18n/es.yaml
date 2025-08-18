@@ -1,0 +1,62 @@
+- id: archive
+  translation: "Archivo"
+- id: categories
+  translation: "Categorías"
+- id: full_post_list
+  translation: "Lista Completa de Entradas"
+- id: home
+  translation: "Inicio"
+- id: about
+  translation: "Acerca de"
+- id: posts
+  translation: "Entradas"
+- id: read_more
+  translation: "Leer Más"
+- id: newer_posts
+  translation: "Entradas Más Recientes"
+- id: older_posts
+  translation: "Entradas Más Antiguas"
+- id: comments
+  translation: "Comentarios"
+- id: post_reply
+  translation: "Publicar Respuesta"
+- id: reply_by_email
+  translation: "Responder por Email"
+- id: conversation_on_microblog
+  translation: "Conversación en Micro.blog"
+- id: reply_on_mastodon
+  translation: "Responder en Mastodon"
+- id: search
+  translation: "Buscar"
+- id: powered_by
+  translation: "Impulsado por"
+- id: hosted_by
+  translation: "Alojado por"
+- id: designed_by
+  translation: "Diseñado con ♥ por"
+- id: all_rights_reserved
+  translation: "Todos los derechos reservados"
+- id: posted_on
+  translation: "Publicado el"
+- id: by_author
+  translation: "Por"
+- id: tag
+  translation: "Etiqueta"
+- id: category
+  translation: "Categoría"
+- id: share
+  translation: "Compartir"
+- id: toggle_menu
+  translation: "Alternar menú"
+- id: close_menu
+  translation: "Cerrar menú"
+- id: loading
+  translation: "Cargando"
+- id: error
+  translation: "Error"
+- id: authentication_required
+  translation: "Autenticación Requerida"
+- id: kudos
+  translation: "Reconocimientos"
+- id: replies
+  translation: "Respuestas"

@@ -1,0 +1,62 @@
+- id: archive
+  translation: "Archive"
+- id: categories
+  translation: "Catégories"
+- id: full_post_list
+  translation: "Liste Complète des Articles"
+- id: home
+  translation: "Accueil"
+- id: about
+  translation: "À propos"
+- id: posts
+  translation: "Articles"
+- id: read_more
+  translation: "Lire la Suite"
+- id: newer_posts
+  translation: "Articles Plus Récents"
+- id: older_posts
+  translation: "Articles Plus Anciens"
+- id: comments
+  translation: "Commentaires"
+- id: post_reply
+  translation: "Publier une Réponse"
+- id: reply_by_email
+  translation: "Répondre par Email"
+- id: conversation_on_microblog
+  translation: "Conversation sur Micro.blog"
+- id: reply_on_mastodon
+  translation: "Répondre sur Mastodon"
+- id: search
+  translation: "Rechercher"
+- id: powered_by
+  translation: "Propulsé par"
+- id: hosted_by
+  translation: "Hébergé par"
+- id: designed_by
+  translation: "Conçu avec ♥ par"
+- id: all_rights_reserved
+  translation: "Tous droits réservés"
+- id: posted_on
+  translation: "Publié le"
+- id: by_author
+  translation: "Par"
+- id: tag
+  translation: "Étiquette"
+- id: category
+  translation: "Catégorie"
+- id: share
+  translation: "Partager"
+- id: toggle_menu
+  translation: "Basculer le menu"
+- id: close_menu
+  translation: "Fermer le menu"
+- id: loading
+  translation: "Chargement"
+- id: error
+  translation: "Erreur"
+- id: authentication_required
+  translation: "Authentification Requise"
+- id: kudos
+  translation: "Félicitations"
+- id: replies
+  translation: "Réponses"
