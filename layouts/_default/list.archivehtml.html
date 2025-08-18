@@ -1,10 +1,10 @@
 {{ define "main" }}
 <div class="archive">
-	<h2 class="p-name">{{ i18n "archive" }}</h2>
+	<h2 class="p-name">{{ T "archive" }}</h2>
 	{{ $list := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
 	{{ if gt (len $list) 0 }}
 	<div class="archive-categories">
-		<h3>{{ i18n "categories" }}</h3>
+		<h3>{{ T "categories" }}</h3>
 		<div class="category-buttons">
 			{{ range $list }}
 			<a href="{{ .Permalink }}" class="category-button">{{ .Title }}</a>
@@ -13,7 +13,7 @@
 	</div>
 	{{ end }}
 	<div class="full-archives h-feed">
-		<h3>{{ i18n "full_post_list" }}</h3>
+		<h3>{{ T "full_post_list" }}</h3>
 		{{ $list := (where .Site.Pages "Type" "post") }}
 		{{ range $list }}
 

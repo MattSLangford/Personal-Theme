@@ -573,6 +573,16 @@ article img,
   margin-right: var(--space-sm);
 }
 
+/* Override Micro.blog's default photos-grid-container */
+.photos-grid-container {
+  padding: 0 !important;
+  margin: 0 calc(-1 * var(--space-xl)) !important;
+}
+
+.photos-grid-container img {
+  margin: var(--space-sm) !important;
+}
+
 /* Fix for linked images */
 a img {
   border: none;

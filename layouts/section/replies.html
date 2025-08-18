@@ -2,7 +2,7 @@
 <div class="home replies h-feed">
 
 
-	<h2>{{ i18n "replies" }}</h2>
+	<h2>{{ T "replies" }}</h2>
 	<div class="post-list replies-list">
 		{{ if .Site.Params.paginate_replies }}
 		{{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "reply") }}

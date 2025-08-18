@@ -305,6 +305,15 @@ This theme is released under the MIT License. You're free to use, modify, and di
 
 ## Changelog
 
+### Version 1.4
+- Converted i18n from YAML to JSON format for better Micro.blog compatibility
+- Removed newsletter template (newsletter_legacy.html)
+- Removed custom color settings template (custom-colors.html)
+- Cleaned up config.json (removed welcome message and pagination settings)
+- Added theme name "Typeset Theme" to footer attribution
+- Fixed photo spacing issues with .photos-grid-container override
+- Improved internationalization system reliability
+
 ### Version 1.3
 - Simplified plugin settings (removed unnecessary toggles)
 - Universal date format (2 Jan 2006)
