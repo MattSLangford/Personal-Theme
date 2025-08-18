@@ -116,7 +116,6 @@ a:focus {
 
 .site-branding h1 a {
 	color: inherit;
-	border-bottom: none;
 }
 
 .site-branding h1 a:hover {
@@ -128,8 +127,8 @@ a:focus {
 	display: none;
 	position: absolute;
 	top: 100%;
-	left: 0;
 	right: 0;
+	width: 280px;
 	background: #ffffff;
 	border: 1px solid #e5e7eb;
 	border-radius: 8px;
@@ -164,7 +163,6 @@ a:focus {
 	font-size: 0.9rem;
 	font-weight: 500;
 	padding: 0.75rem 1.25rem;
-	border-bottom: none;
 	transition: all 0.15s ease;
 	position: relative;
 }
@@ -172,7 +170,6 @@ a:focus {
 .nav-item:hover {
 	background: #f8fafc;
 	color: #1f2937;
-	border-bottom: none;
 }
 
 .nav-item.current {
@@ -319,12 +316,10 @@ a.post-date {
 	display: block;
 	margin-bottom: 1rem;
 	font-weight: 500;
-	border-bottom: none;
 }
 
 a.post-date:hover {
 	color: #374151;
-	border-bottom: none;
 }
 
 .post-title,
@@ -338,12 +333,10 @@ a.post-date:hover {
 
 .post-title a {
 	color: inherit;
-	border-bottom: none;
 }
 
 .post-title a:hover {
 	color: #2563eb;
-	border-bottom: none;
 }
 
 /* Content areas */
@@ -420,7 +413,6 @@ ol ul {
 	border-radius: 12px;
 	transition: all 0.2s ease;
 	display: inline-block;
-	border-bottom: none;
 	opacity: 0.8;
 }
 
@@ -428,7 +420,6 @@ ol ul {
 	background: #f9fafb;
 	color: #6b7280;
 	border-color: #d1d5db;
-	border-bottom: none;
 	opacity: 1;
 }
 
@@ -468,7 +459,6 @@ ol ul {
 	color: #374151;
 	cursor: pointer;
 	transition: all 0.2s ease;
-	border-bottom: none;
 }
 
 .reply-buttons a:hover,
@@ -476,7 +466,6 @@ ol ul {
 	background: #f3f4f6;
 	color: #1f2937;
 	border-color: #d1d5db;
-	border-bottom: none;
 }
 
 .reply-buttons button.tinylytics_kudos {
@@ -645,6 +634,16 @@ input[type="submit"]:hover {
 	color: #1f2937;
 }
 
+/* Category intro text */
+.microblog_category_intro {
+	padding-bottom: 2em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid #e5e7eb;
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: #4b5563;
+}
+
 /* Comments Section */
 .microblog_conversation {
 	margin: 3rem 0;
@@ -694,12 +693,10 @@ input[type="submit"]:hover {
 	color: #6b7280;
 	font-size: 0.875rem;
 	text-decoration: none;
-	border-bottom: none;
 }
 
 .microblog_time a:hover {
 	color: #374151;
-	border-bottom: none;
 }
 
 /* Reply Form */
@@ -875,6 +872,13 @@ input.microblog_reply_button:hover {
 	
 	.site-footer .wrapper {
 		padding: 0 1rem;
+	}
+	
+	/* Full-width nav on mobile */
+	.main-nav {
+		left: 0;
+		right: 0;
+		width: auto;
 	}
 }
 
