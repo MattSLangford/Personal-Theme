@@ -24,7 +24,7 @@
   --color-text-muted: #6b7280;
   --color-text-light: #9ca3af;
   
-  --color-bg-primary: #fafbfc;
+  --color-bg-primary: #ffffff;
   --color-bg-secondary: #ffffff;
   --color-bg-tertiary: #f9fafb;
   --color-bg-hover: #f8fafc;
@@ -423,7 +423,7 @@ a:focus {
 .post-preview,
 .post,
 .h-entry {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-tertiary);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-2xl);
@@ -486,7 +486,7 @@ a.post-date {
   font-size: var(--font-size-sm);
   text-decoration: none;
   display: block;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   font-weight: 500;
   border-bottom: none !important;
 }
@@ -547,6 +547,17 @@ article img,
   margin: var(--space-lg) 0;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+}
+
+/* Fix spacing for images inside paragraphs */
+p img {
+  margin: var(--space-md) 0 !important;
+  display: block;
+}
+
+/* Remove paragraph bottom margin when it only contains an image */
+p:has(> img:only-child) {
+  margin-bottom: var(--space-md);
 }
 
 /* Photo page specific fixes */
@@ -1290,9 +1301,9 @@ input.microblog_reply_button:hover {
     padding: 0 var(--space-md);
   }
   
-  /* Mobile content padding */
+  /* Mobile content padding - wider text area */
   .wrapper {
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-sm);
   }
   
   /* Reduced spacing on mobile */
@@ -1358,10 +1369,10 @@ input.microblog_reply_button:hover {
     width: auto;
   }
   
-  /* Larger navigation font size on mobile */
+  /* Better navigation sizing on mobile */
   .nav-item {
-    font-size: var(--font-size-base);
-    padding: var(--space-lg);
+    font-size: var(--font-size-lg);
+    padding: var(--space-md) var(--space-lg);
   }
 }
 

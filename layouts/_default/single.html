@@ -2,7 +2,7 @@
 <div class="post h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}">
 
   <header class="post-header">
-    {{ if .Date }}
+    {{ if and .Date (eq .Type "post") }}
     <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "2 Jan 2006" }}</time> ∞</a>
     {{ end }}
     {{ if .Title }}
