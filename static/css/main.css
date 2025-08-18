@@ -1205,6 +1205,7 @@ input.microblog_reply_button {
   color: var(--color-bg-secondary);
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
