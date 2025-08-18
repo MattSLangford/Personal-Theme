@@ -139,6 +139,10 @@ body {
   font-size: var(--font-size-base);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  /* Support for iOS/macOS safe area insets */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
   -moz-osx-font-smoothing: grayscale;
 }
 
@@ -210,6 +214,10 @@ a:focus {
   margin-bottom: 0;
   position: relative;
   width: 100%;
+  /* Support for iOS/macOS safe area insets */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-top: calc(var(--space-md) + env(safe-area-inset-top));
 }
 
 /* Header container with max-width and centering */
@@ -1347,6 +1355,12 @@ input.microblog_reply_button:hover {
     left: 0;
     right: 0;
     width: auto;
+  }
+  
+  /* Larger navigation font size on mobile */
+  .nav-item {
+    font-size: var(--font-size-base);
+    padding: var(--space-lg);
   }
 }
 

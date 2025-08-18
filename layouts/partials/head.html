@@ -2,6 +2,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Browser color theming -->
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1f2937" media="(prefers-color-scheme: dark)">
+  <meta name="msapplication-navbutton-color" content="#ffffff">
+  
+  <!-- iOS/Safari status bar styling -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <!-- Additional viewport meta for iOS 18+ and macOS 15+ -->
+  <meta name="viewport-fit" content="cover">
+  <meta name="color-scheme" content="light dark">
+  
   <meta name="twitter:card" content="summary">
   {{ with .Title }}
   <meta name="twitter:title" content="{{ . }}">
