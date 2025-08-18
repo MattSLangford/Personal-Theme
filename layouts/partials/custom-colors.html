@@ -1,14 +1,9 @@
 <style>
+{{ if .Site.Params.primary_link_color }}
 :root {
-  --primary-color: {{ .Site.Params.primary_link_color | default "#2563eb" }};
-  --untitled-color: {{ .Site.Params.untitled_post_color | default "#2563eb" }};
-  --titled-color: {{ .Site.Params.titled_post_color | default "#059669" }};
-  --header-bg: {{ .Site.Params.header_background_color | default "#ffffff" }};
-  --body-bg: {{ .Site.Params.body_background_color | default "#fafbfc" }};
-  --card-bg: {{ .Site.Params.card_background_color | default "#ffffff" }};
+  --primary-color: {{ .Site.Params.primary_link_color }};
 }
 
-/* Apply custom colors */
 a {
   color: var(--primary-color);
 }
@@ -34,46 +29,8 @@ a:hover {
   background: var(--primary-color);
 }
 
-.site-header {
-  background: var(--header-bg);
-}
-
-body {
-  background: var(--body-bg);
-}
-
-.page-content {
-  background: var(--body-bg);
-}
-
-.post-preview,
-.post,
-.h-entry {
-  background: var(--card-bg);
-}
-
-.site-footer {
-  background: var(--header-bg);
-}
-
 .site-footer a:hover {
   color: var(--primary-color);
-}
-
-.untitled-post {
-  border-left-color: var(--untitled-color);
-}
-
-.untitled-post .post-date {
-  color: var(--untitled-color);
-}
-
-.post-preview:not(.untitled-post) {
-  border-left-color: var(--titled-color);
-}
-
-.post-preview:not(.untitled-post) .post-date {
-  color: var(--titled-color);
 }
 
 blockquote {
@@ -97,14 +54,64 @@ input:focus,
 textarea:focus {
   border-color: var(--primary-color);
 }
+{{ end }}
 
-{{ if not .Site.Params.show_post_dates }}
-.post-date {
-  display: none;
+{{ if .Site.Params.untitled_post_color }}
+.untitled-post {
+  border-left-color: {{ .Site.Params.untitled_post_color }};
+}
+
+.untitled-post .post-date {
+  color: {{ .Site.Params.untitled_post_color }};
 }
 {{ end }}
 
-{{ if not .Site.Params.enable_smooth_animations }}
+{{ if .Site.Params.titled_post_color }}
+.post-preview:not(.untitled-post) {
+  border-left-color: {{ .Site.Params.titled_post_color }};
+}
+
+.post-preview:not(.untitled-post) .post-date {
+  color: {{ .Site.Params.titled_post_color }};
+}
+{{ end }}
+
+{{ if .Site.Params.header_background_color }}
+.site-header {
+  background: {{ .Site.Params.header_background_color }};
+}
+
+.site-footer {
+  background: {{ .Site.Params.header_background_color }};
+}
+{{ end }}
+
+{{ if .Site.Params.body_background_color }}
+body {
+  background: {{ .Site.Params.body_background_color }};
+}
+
+.page-content {
+  background: {{ .Site.Params.body_background_color }};
+}
+{{ end }}
+
+{{ if .Site.Params.card_background_color }}
+.post-preview,
+.post,
+.h-entry {
+  background: {{ .Site.Params.card_background_color }};
+}
+{{ end }}
+
+{{ if eq .Site.Params.show_post_dates false }}
+.post-date,
+a.post-date {
+  display: none !important;
+}
+{{ end }}
+
+{{ if eq .Site.Params.enable_smooth_animations false }}
 * {
   transition: none !important;
   animation: none !important;
