@@ -102,11 +102,13 @@ a:focus {
 
 .avatar-link {
 	display: block;
-	transition: transform 0.2s ease;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border-bottom: none !important;
 }
 
 .avatar-link:hover {
 	transform: scale(1.05);
+	border-bottom: none !important;
 }
 
 .site-avatar {
@@ -326,11 +328,13 @@ a.post-date {
 	display: block;
 	margin-bottom: 1rem;
 	font-weight: 500;
+	border-bottom: none !important;
 }
 
 a.post-date:hover {
 	color: #374151;
 	text-decoration: none;
+	border-bottom: none !important;
 }
 
 .post-title,
@@ -400,6 +404,13 @@ a:hover img {
 	border: none;
 }
 
+/* Remove underlines from image links */
+a:has(img),
+a:has(img):hover {
+	border-bottom: none !important;
+	text-decoration: none !important;
+}
+
 /* Lists */
 ul,
 ol {
@@ -446,12 +457,14 @@ ol ul {
 	transition: all 0.2s ease;
 	display: inline-block;
 	opacity: 0.8;
+	border-bottom: 1px solid #e5e7eb !important;
 }
 
 .post-tags a:hover {
 	background: #f9fafb;
 	color: #6b7280;
 	border-color: #d1d5db;
+	border-bottom: 1px solid #d1d5db !important;
 	opacity: 1;
 }
 
@@ -491,6 +504,7 @@ ol ul {
 	color: #374151;
 	cursor: pointer;
 	transition: all 0.2s ease;
+	border-bottom: 1px solid #e5e7eb !important;
 }
 
 .reply-buttons a:hover,
@@ -498,6 +512,7 @@ ol ul {
 	background: #f3f4f6;
 	color: #1f2937;
 	border-color: #d1d5db;
+	border-bottom: 1px solid #d1d5db !important;
 }
 
 .reply-buttons button.tinylytics_kudos {
@@ -548,7 +563,7 @@ ol ul {
 	border-radius: 8px;
 	transition: all 0.2s ease;
 	display: inline-block;
-	border-bottom: 1px solid #e5e7eb;
+	border-bottom: 1px solid #e5e7eb !important;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -556,7 +571,7 @@ ol ul {
 	background: #f8fafc;
 	color: #1f2937;
 	border-color: #d1d5db;
-	border-bottom: 1px solid #d1d5db;
+	border-bottom: 1px solid #d1d5db !important;
 	transform: translateY(-1px);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -965,6 +980,7 @@ input.microblog_reply_button:hover {
 
 .site-footer p {
 	margin-bottom: 0.5rem;
+	text-align: center;
 }
 
 .site-footer p:last-child {
