@@ -551,13 +551,14 @@ article img,
 
 /* Fix spacing for images inside paragraphs */
 p img {
-  margin: var(--space-md) 0 !important;
+  margin: 0 !important;
   display: block;
 }
 
-/* Remove paragraph bottom margin when it only contains an image */
-p:has(> img:only-child) {
-  margin-bottom: var(--space-md);
+/* Remove paragraph margins when it contains images */
+p:has(img) {
+  margin-bottom: var(--space-lg) !important;
+  margin-top: 0 !important;
 }
 
 /* Photo page specific fixes */
@@ -1372,7 +1373,7 @@ input.microblog_reply_button:hover {
   /* Better navigation sizing on mobile */
   .nav-item {
     font-size: var(--font-size-lg);
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-sm) var(--space-lg);
   }
 }
 
