@@ -168,54 +168,73 @@ p {
   max-width: 65ch;
 }
 
-/* Magnetic link effect */
+/* Enhanced link effect */
 a {
   color: var(--color-accent-primary);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   display: inline-block;
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, #4285f4 100%) no-repeat;
+  background-size: 0% 3px;
+  background-position: 0% 100%;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
 }
 
-a::after {
+a::before {
   content: '';
   position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: -1px;
-  left: 50%;
-  background: var(--color-accent-primary);
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(110deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.6) 55%, transparent 70%, transparent 100%);
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  z-index: 1;
 }
 
 a:hover {
   color: var(--color-accent-primary-hover);
+  background-size: 100% 3px;
   transform: translateY(-1px);
 }
 
-a:hover::after {
-  width: 100%;
-  left: 0;
+a:hover::before {
+  left: 100%;
 }
 
-/* Remove magnetic effect from specific elements */
-a.post-date::after,
-button::after,
-.reply-buttons a::after,
-.category-button::after,
-.nav-item::after,
-a[class*="button"]::after {
+/* Remove enhanced link effect from UI elements */
+a.post-date::before,
+button::before,
+a button::before,
+.reply-buttons a::before,
+.category-button::before,
+.nav-item::before,
+.site-avatar::before,
+.post-tags a::before,
+a[class*="button"]::before,
+a[href*="reply"]::before,
+a[href*="email"]::before,
+a[href*="mastodon"]::before,
+.microblog_reply_button::before {
   display: none !important;
 }
 
-a.post-date:hover,
-button:hover,
-.reply-buttons a:hover,
-.category-button:hover,
-.nav-item:hover,
-a[class*="button"]:hover {
-  transform: none !important;
+a.post-date,
+button,
+a button,
+.reply-buttons a,
+.category-button,
+.nav-item,
+.site-avatar,
+.post-tags a,
+a[class*="button"],
+a[href*="reply"],
+a[href*="email"],
+a[href*="mastodon"],
+.microblog_reply_button {
+  background: none !important;
 }
 
 /* Focus styles for accessibility */
@@ -488,8 +507,8 @@ a:focus {
 
 .untitled-post .post-date {
   font-size: var(--font-size-sm);
-  color: var(--color-accent-untitled);
-  font-weight: 600;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 .untitled-post .e-content {
@@ -498,8 +517,8 @@ a:focus {
 }
 
 .post-preview:not(.untitled-post) .post-date {
-  color: var(--color-accent-titled);
-  font-weight: 600;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 /* =====================================================
@@ -601,6 +620,11 @@ ul + img,
 ol + img,
 blockquote + img {
   margin-top: 0;
+}
+
+/* Ensure images after images have top margin */
+img + img {
+  margin-top: var(--space-lg) !important;
 }
 
 article img:hover,
@@ -778,25 +802,26 @@ ol ul {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: var(--color-bg-tertiary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   padding: var(--space-sm) var(--space-lg);
   text-decoration: none;
   font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--color-text-secondary);
   cursor: pointer;
-  transition: all var(--transition-normal);
-  border-bottom: 1px solid var(--color-border-light) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reply-buttons a:hover,
 .reply-buttons button:hover {
-  background: var(--color-bg-hover);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-medium);
-  border-bottom: 1px solid var(--color-border-medium) !important;
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
 }
 
 /* Icons for reply buttons */
@@ -1278,15 +1303,16 @@ textarea.microblog_reply_textarea:focus {
 button.microblog_reply_button,
 input.microblog_reply_button {
   background: var(--color-accent-primary);
-  border: 1px solid var(--color-accent-primary);
-  color: var(--color-bg-secondary);
-  padding: var(--space-sm) var(--space-lg);
-  border-radius: var(--radius-md);
+  border: none;
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 50px;
   font-size: var(--font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition-normal);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   margin-right: var(--space-sm);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
 }
 
 .microblog_reply_button input:hover,
@@ -1294,7 +1320,8 @@ input.microblog_reply_button {
 button.microblog_reply_button:hover,
 input.microblog_reply_button:hover {
   background: var(--color-accent-primary-hover);
-  border-color: var(--color-accent-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
 }
 
 /* =====================================================
@@ -1501,6 +1528,10 @@ input.microblog_reply_button:hover {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-footer p {
@@ -1520,6 +1551,11 @@ input.microblog_reply_button:hover {
 .site-footer a:hover {
   color: var(--color-accent-primary);
   border-bottom-color: var(--color-accent-primary);
+}
+
+/* Make heart red */
+.site-footer .heart {
+  color: #e53e3e;
 }
 
 /* =====================================================
