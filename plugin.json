@@ -1,7 +1,7 @@
 {
-  "version": "1.4",
-  "title": "Typeset Theme",
-  "description": "A modern, multilingual, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, internationalization support, and comprehensive Micro.blog integration.",
+  "version": "2.0",
+  "title": "Aurora Theme",
+  "description": "The future of blog design. A revolutionary mobile-first theme featuring fluid typography, breathing animations, glassmorphism effects, and seamless dark mode. Built for speed, accessibility, and pure reading pleasure.",
   "fields": [
     {
       "field": "defaultContentLanguage",
@@ -25,12 +25,40 @@
       "field": "paginate",
       "label": "Posts per Page",
       "type": "integer",
-      "default": 20
+      "default": 15,
+      "min": 5,
+      "max": 50
     },
     {
       "field": "params.custom_avatar",
       "label": "Custom Avatar URL (optional)",
-      "type": "string"
+      "type": "string",
+      "help": "Override your Micro.blog avatar with a custom image URL"
+    },
+    {
+      "field": "params.accent_color",
+      "label": "Accent Color",
+      "type": "select",
+      "options": [
+        {"value": "aurora", "label": "Aurora Blue (default)"},
+        {"value": "crimson", "label": "Crimson Red"},
+        {"value": "emerald", "label": "Emerald Green"},
+        {"value": "amber", "label": "Amber Gold"}
+      ],
+      "default": "aurora",
+      "help": "Choose your theme's accent color"
+    },
+    {
+      "field": "params.animation_level",
+      "label": "Animation Level",
+      "type": "select",
+      "options": [
+        {"value": "full", "label": "Full Animations"},
+        {"value": "reduced", "label": "Reduced Animations"},
+        {"value": "none", "label": "No Animations"}
+      ],
+      "default": "full",
+      "help": "Control the level of animations and transitions"
     }
   ]
 }
