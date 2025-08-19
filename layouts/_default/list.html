@@ -1,65 +1,142 @@
 {{ define "main" }}
-<div class="posts-archive">
-  <h1 class="archive-title">{{ .Title }}</h1>
-  
-  {{ with .Content }}
-    <div class="microblog_category_intro">{{ . }}</div>
-  {{ end }}
-  
-  <div class="posts h-feed">
-    <div class="post_list" role="main">
-      {{ $paginator := .Paginate .Pages }}
-      {{ range .Paginator.Pages }}
-      <article class="post-preview h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}{{ if not .Title }} untitled-post{{ end }}">
+<div class="list-page">
+  <header class="list-header">
+    <h1 class="list-title">
+      {{ if .Title }}
+        {{ .Title }}
+      {{ else if eq .Section "posts" }}
+        All Posts
+      {{ else if eq .Section "categories" }}
+        Categories
+      {{ else if eq .Section "tags" }}
+        Tags
+      {{ else }}
+        {{ .Section | title }}
+      {{ end }}
+    </h1>
+    
+    {{ if .Description }}
+    <p class="list-description">{{ .Description }}</p>
+    {{ end }}
+    
+    {{ if and .Pages (gt (len .Pages) 0) }}
+    <div class="list-meta">
+      {{ $count := len .Pages }}
+      {{ if eq $count 1 }}
+        1 post
+      {{ else }}
+        {{ $count }} posts
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  {{ if eq .Section "categories" }}
+    {{ if .Site.Taxonomies.categories }}
+    <div class="taxonomy-list">
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+      <a href="/categories/{{ $name | urlize }}" class="taxonomy-item">
+        <span class="taxonomy-name">#{{ $name }}</span>
+        <span class="taxonomy-count">{{ len $taxonomy }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  {{ else if eq .Section "tags" }}
+    {{ if .Site.Taxonomies.tags }}
+    <div class="taxonomy-list">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+      <a href="/tags/{{ $name | urlize }}" class="taxonomy-item">
+        <span class="taxonomy-name">{{ $name }}</span>
+        <span class="taxonomy-count">{{ len $taxonomy }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  {{ else }}
+    {{ if .Pages }}
+    <div class="post-list">
+      {{ range .Pages }}
+      <article class="post-item">
         <header class="post-header">
-          <a href="{{ .Permalink }}" class="post-date u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "2 Jan 2006" }}</time></a>
+          {{ if .Date }}
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+          {{ end }}
+          
+          {{ if .Params.categories }}
+          <div class="post-categories">
+            {{ range .Params.categories }}
+            <a href="/categories/{{ . | urlize }}" class="category-tag">#{{ . }}</a>
+            {{ end }}
+          </div>
+          {{ end }}
         </header>
-        
+
         {{ if .Title }}
-          <h2 class="post-title p-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          {{ if in .RawContent "<!--more-->" }}
-            <div class="p-summary">
-              {{ $splitContents := split .RawContent "<!--more-->" }}
-              {{ $summary := index $splitContents 0 }}
-              {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-              {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-              {{ $summary | markdownify }}
-              <p><a class="read-more" href="{{ .Permalink }}">Read More →</a></p>
-            </div>
-          {{ else if .Params.custom_summary }}
-          <div class="p-summary">
-            <p>{{ .Summary | safeHTML }}</p>
-          </div>
+        <h2 class="post-title">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+        {{ end }}
+
+        <div class="post-content">
+          {{ if .Params.photos }}
+            {{ if eq (len .Params.photos) 1 }}
+              <img src="{{ index .Params.photos 0 }}" alt="">
+            {{ else }}
+              <div class="photos">
+                {{ range .Params.photos }}
+                  <img src="{{ . }}" alt="">
+                {{ end }}
+              </div>
+            {{ end }}
+          {{ end }}
+
+          {{ if .Summary }}
+            {{ .Summary }}
+            {{ if .Truncated }}
+              <p><a href="{{ .Permalink }}" class="read-more">Continue reading →</a></p>
+            {{ end }}
           {{ else }}
-            <div class="e-content">
-              {{ .Content }}
-            </div>
-          {{ end }}
-        {{ else }}
-          <div class="e-content">
             {{ .Content }}
-          </div>
-        {{ end }}
-        
-        {{ if .Params.categories }}
-        <ul class="post-tags">
-          {{ range .Params.categories }} {{ $href := print (absURL "categories/") (urlize .) }}
-          <li><a href="{{ $href }}">{{ . }}</a></li>
           {{ end }}
-        </ul>
-        {{ end }}
+        </div>
       </article>
       {{ end }}
     </div>
-  </div>
-  
-  <nav class="post-nav">
-    {{ if $paginator.HasPrev }}
-    <a href="{{ $paginator.Prev.URL }}" title="Previous Page" class="prev">← Newer Posts</a>
+    {{ else }}
+    <div class="empty-state">
+      <p>No posts found in this section.</p>
+      <a href="/" class="page-link">← Back to Home</a>
+    </div>
     {{ end }}
-    {{ if $paginator.HasNext }}
-    <a href="{{ $paginator.Next.URL }}" class="next">Older Posts →</a>
+  {{ end }}
+
+  {{ if .Paginator }}
+  <nav class="pagination" aria-label="Pagination Navigation">
+    {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}" class="page-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+      </svg>
+      Previous
+    </a>
+    {{ end }}
+
+    <span class="page-info">
+      Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
+    </span>
+
+    {{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}" class="page-link">
+      Next
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+      </svg>
+    </a>
     {{ end }}
   </nav>
+  {{ end }}
 </div>
 {{ end }}

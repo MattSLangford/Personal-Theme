@@ -1,36 +1,36 @@
 {
-  "version": "1.4",
-  "title": "Typeset Theme",
-  "description": "A modern, multilingual, typography-first theme for Micro.blog with clean design, excellent readability, and automatic dark mode. Features universal navigation, post differentiation, internationalization support, and comprehensive Micro.blog integration.",
+  "version": "1.0.0",
+  "title": "Quantum",
+  "description": "A modern, fast, dimensional reading experience designed for Micro.blog. Features quantum-inspired design with performance optimization and accessibility built-in.",
+  "author": {
+    "name": "Matt Langford",
+    "url": "https://www.mattlangford.com",
+    "microblog": "@mattlangford"
+  },
   "fields": [
     {
-      "field": "defaultContentLanguage",
-      "label": "Default Language",
-      "type": "select",
-      "options": [
-        {"value": "en", "label": "English"},
-        {"value": "es", "label": "Español (Spanish)"},
-        {"value": "fr", "label": "Français (French)"},
-        {"value": "de", "label": "Deutsch (German)"},
-        {"value": "pt", "label": "Português (Portuguese)"},
-        {"value": "zh", "label": "中文 (Chinese)"},
-        {"value": "ja", "label": "日本語 (Japanese)"},
-        {"value": "ar", "label": "العربية (Arabic)"},
-        {"value": "ru", "label": "Русский (Russian)"},
-        {"value": "hi", "label": "हिन्दी (Hindi)"}
-      ],
-      "default": "en"
+      "field": "microblog.username",
+      "label": "Micro.blog username",
+      "description": "Your Micro.blog username (without @)"
     },
     {
-      "field": "paginate",
-      "label": "Posts per Page",
-      "type": "integer",
-      "default": 20
+      "field": "include_conversation",
+      "label": "Include conversation",
+      "description": "Show replies and conversations below posts",
+      "type": "boolean"
     },
     {
-      "field": "params.custom_avatar",
-      "label": "Custom Avatar URL (optional)",
-      "type": "string"
+      "field": "show_reply_links",
+      "label": "Show reply links",
+      "description": "Show reply and share buttons below posts",
+      "type": "boolean"
     }
-  ]
+  ],
+  "params": {
+    "microblog": {
+      "username": ""
+    },
+    "include_conversation": true,
+    "show_reply_links": true
+  }
 }

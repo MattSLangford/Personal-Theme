@@ -1,0 +1,26 @@
+<!-- Micro.blog conversation integration -->
+{{ if .Params.reply_url }}
+<div class="conversation-context">
+  <h4>In reply to:</h4>
+  <blockquote>
+    <a href="{{ .Params.reply_url }}">{{ .Params.reply_url }}</a>
+  </blockquote>
+</div>
+{{ end }}
+
+<!-- This will be populated by Micro.blog's JavaScript -->
+<div id="microblog_conversation"></div>
+
+<script type="text/javascript">
+  // Micro.blog conversation loading
+  if (window.location.hostname !== 'localhost') {
+    (function() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://micro.blog/conversation.js?url=' + encodeURIComponent(window.location.href);
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(script, s);
+    })();
+  }
+</script>
