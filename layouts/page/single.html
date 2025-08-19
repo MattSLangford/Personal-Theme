@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="post-single page-single">
+  <header class="post-header">
+    {{ if .Title }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{ end }}
+  </header>
+
+  <div class="post-content">
+    {{ if .Params.photos }}
+      {{ if eq (len .Params.photos) 1 }}
+        <img src="{{ index .Params.photos 0 }}" alt="">
+      {{ else }}
+        <div class="photos">
+          {{ range .Params.photos }}
+            <img src="{{ . }}" alt="">
+          {{ end }}
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ .Content }}
+  </div>
+
+  {{ if .Site.Params.include_conversation }}
+  <div class="conversation-section">
+    {{ partial "microblog_conversation.html" . }}
+  </div>
+  {{ end }}
+</article>
+{{ end }}
