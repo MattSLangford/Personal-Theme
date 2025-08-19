@@ -1,0 +1,53 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Aurora Theme Optimization -->
+  <meta name="theme-color" content="#3b82ff">
+  <meta name="color-scheme" content="light dark">
+  
+  {{ if .Title }}
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+  <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}">
+  {{ else }}
+  <title>{{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta name="twitter:title" content="{{ .Site.Title }}">
+  {{ end }}
+  
+  {{ if .Description }}
+  <meta name="description" content="{{ .Description }}">
+  <meta property="og:description" content="{{ .Description }}">
+  <meta name="twitter:description" content="{{ .Description }}">
+  {{ else if .Site.Params.description }}
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta name="twitter:description" content="{{ .Site.Params.description }}">
+  {{ end }}
+  
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta name="twitter:card" content="summary">
+  
+  {{ if .Site.Author.avatar }}
+  <meta property="og:image" content="{{ .Site.Author.avatar }}">
+  <meta name="twitter:image" content="{{ .Site.Author.avatar }}">
+  {{ end }}
+  
+  {{ range .Params.photos }}
+  <meta property="og:image" content="{{ . }}">
+  <meta name="twitter:image" content="{{ . }}">
+  {{ end }}
+  
+  <!-- Aurora Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://micro.blog">
+  
+  <!-- Aurora Styling -->
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
+  
+  {{ partial "microblog_head.html" . }}
+</head>

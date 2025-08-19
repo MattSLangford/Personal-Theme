@@ -1,103 +1,40 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang | default "en" }}">
-<<<<<<< HEAD
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- Quantum Theme Optimization -->
-  <meta name="theme-color" content="#ff2d55">
-  <meta name="color-scheme" content="light dark">
-  
-  {{ if .Title }}
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
-  <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
-  <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}">
-  {{ else }}
-  <title>{{ .Site.Title }}</title>
-  <meta property="og:title" content="{{ .Site.Title }}">
-  <meta name="twitter:title" content="{{ .Site.Title }}">
-  {{ end }}
-  
-  {{ if .Description }}
-  <meta name="description" content="{{ .Description }}">
-  <meta property="og:description" content="{{ .Description }}">
-  <meta name="twitter:description" content="{{ .Description }}">
-  {{ else if .Site.Params.description }}
-  <meta name="description" content="{{ .Site.Params.description }}">
-  <meta property="og:description" content="{{ .Site.Params.description }}">
-  <meta name="twitter:description" content="{{ .Site.Params.description }}">
-  {{ end }}
-  
-  <link rel="canonical" href="{{ .Permalink }}">
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-  <meta name="twitter:card" content="summary">
-  
-  {{ if .Site.Author.avatar }}
-  <meta property="og:image" content="{{ .Site.Author.avatar }}">
-  <meta name="twitter:image" content="{{ .Site.Author.avatar }}">
-  {{ end }}
-  
-  {{ range .Params.photos }}
-  <meta property="og:image" content="{{ . }}">
-  <meta name="twitter:image" content="{{ . }}">
-  {{ end }}
-  
-  <!-- Quantum Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="dns-prefetch" href="https://micro.blog">
-  
-  <!-- Quantum Styling -->
-  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
-  
-  {{ partial "microblog_head.html" . }}
-</head>
-=======
-
 {{ partial "head.html" . }}
->>>>>>> main
 
 <body>
   <header class="site-header">
-    <div class="quantum-container">
-      <div class="header-content">
-        <div class="site-branding quantum-inline">
-          {{ if .Site.Author.avatar }}
-          <a href="{{ .Site.BaseURL }}">
-            <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" class="site-avatar">
-          </a>
-          {{ end }}
-          <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
-        </div>
-        
-        <nav class="main-nav" role="navigation">
-          {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
-          {{ end }}
-          <a href="{{ .Site.BaseURL }}posts/" class="nav-link">{{ T "posts" }}</a>
-          <a href="{{ .Site.BaseURL }}archive/" class="nav-link">{{ T "archive" }}</a>
-        </nav>
+    <div class="header-inner">
+      <div class="site-branding">
+        {{ if .Site.Author.avatar }}
+        <a href="{{ .Site.BaseURL }}">
+          <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Title }}" class="site-avatar">
+        </a>
+        {{ end }}
+        <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
       </div>
+      
+      <nav class="main-nav" role="navigation">
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}" class="nav-item">{{ .Name }}</a>
+        {{ end }}
+        <a href="{{ .Site.BaseURL }}posts/" class="nav-item">{{ T "posts" }}</a>
+        <a href="{{ .Site.BaseURL }}archive/" class="nav-item">{{ T "archive" }}</a>
+      </nav>
     </div>
   </header>
 
   <main class="page-content" role="main">
-<<<<<<< HEAD
-    <div class="quantum-container">
-=======
     <div class="wrapper">
->>>>>>> main
       {{ block "main" . }}{{ end }}
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="quantum-container">
+    <div class="wrapper">
       <div class="footer-content">
         <p>© {{ now.Year }} {{ .Site.Title }}. Hosted by <a href="https://micro.blog">Micro.blog</a>.</p>
-        <p>Quantum Theme by <a href="https://www.mattlangford.com">Matt Langford</a>.</p>
+        <p>Aurora Theme by <a href="https://www.mattlangford.com">Matt Langford</a>.</p>
       </div>
     </div>
   </footer>
@@ -106,22 +43,6 @@
   <script src="{{ . }}" defer></script>
   {{ end }}
   
-<<<<<<< HEAD
-  <!-- Quantum Enhancement Script -->
-  <script>
-    // Quantum performance enhancements
-    document.addEventListener('DOMContentLoaded', function() {
-      // Preload critical pages on hover
-      const links = document.querySelectorAll('a[href^="/"], .post-title a, .nav-link');
-      links.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-          if (!this.dataset.prefetched) {
-            const prefetch = document.createElement('link');
-            prefetch.rel = 'prefetch';
-            prefetch.href = this.href;
-            document.head.appendChild(prefetch);
-            this.dataset.prefetched = 'true';
-=======
   <!-- Enhanced Performance Script -->
   <script>
     // Preload critical images on hover for instant navigation
@@ -135,41 +56,10 @@
             prefetch.rel = 'prefetch';
             prefetch.href = url;
             document.head.appendChild(prefetch);
->>>>>>> main
           }
         });
       });
       
-<<<<<<< HEAD
-      // Quantum image loading
-      const images = document.querySelectorAll('img[src]');
-      images.forEach(img => {
-        if (!img.complete) {
-          img.style.opacity = '0';
-          img.style.transform = 'scale(0.95)';
-          img.addEventListener('load', function() {
-            this.style.transition = 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)';
-            this.style.opacity = '1';
-            this.style.transform = 'scale(1)';
-          });
-        }
-      });
-      
-      // Quantum scroll enhancement
-      let ticking = false;
-      const header = document.querySelector('.site-header');
-      
-      function updateHeader() {
-        const scrollY = window.scrollY;
-        if (scrollY > 100) {
-          header.style.background = 'rgba(255, 255, 255, 0.95)';
-          header.style.backdropFilter = 'blur(20px) saturate(180%)';
-        } else {
-          header.style.background = 'rgba(255, 255, 255, 0.9)';
-          header.style.backdropFilter = 'blur(20px)';
-        }
-        ticking = false;
-=======
       // Add loading class to images for progressive enhancement
       const images = document.querySelectorAll('img[src]');
       images.forEach(img => {
@@ -196,15 +86,7 @@
             }
           });
         });
->>>>>>> main
       }
-      
-      window.addEventListener('scroll', function() {
-        if (!ticking) {
-          requestAnimationFrame(updateHeader);
-          ticking = true;
-        }
-      }, { passive: true });
     });
   </script>
 </body>

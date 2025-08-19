@@ -1,18 +1,7 @@
 {
-<<<<<<< HEAD
-  "version": "1.0.0",
-  "title": "Quantum",
-  "description": "A modern, fast, dimensional reading experience designed for Micro.blog. Features quantum-inspired design with performance optimization and accessibility built-in.",
-  "author": {
-    "name": "Matt Langford",
-    "url": "https://www.mattlangford.com",
-    "microblog": "@mattlangford"
-  },
-=======
   "version": "2.0",
   "title": "Aurora Theme",
   "description": "The future of blog design. A revolutionary mobile-first theme featuring fluid typography, breathing animations, glassmorphism effects, and seamless dark mode. Built for speed, accessibility, and pure reading pleasure.",
->>>>>>> main
   "fields": [
     {
       "field": "microblog.username",
@@ -20,18 +9,6 @@
       "description": "Your Micro.blog username (without @)"
     },
     {
-<<<<<<< HEAD
-      "field": "include_conversation",
-      "label": "Include conversation",
-      "description": "Show replies and conversations below posts",
-      "type": "boolean"
-    },
-    {
-      "field": "show_reply_links",
-      "label": "Show reply links",
-      "description": "Show reply and share buttons below posts",
-      "type": "boolean"
-=======
       "field": "paginate",
       "label": "Posts per Page",
       "type": "integer",
@@ -69,7 +46,6 @@
       ],
       "default": "full",
       "help": "Control the level of animations and transitions"
->>>>>>> main
     }
   ],
   "params": {
