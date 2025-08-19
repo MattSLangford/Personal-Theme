@@ -10,7 +10,6 @@
     </div>
     
     <nav class="main-nav" role="navigation">
-      <a href="{{ .Site.BaseURL }}" class="nav-item">{{ T "home" }}</a>
       {{ range .Site.Menus.main }}
       <a href="{{ .URL }}" class="nav-item">{{ .Name }}</a>
       {{ end }}
