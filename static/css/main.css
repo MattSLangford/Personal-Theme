@@ -168,53 +168,69 @@ p {
   max-width: 65ch;
 }
 
-/* Subtle link effect */
+/* Text link animation */
 a {
   color: var(--color-accent-primary);
   text-decoration: none;
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-primary)) no-repeat;
-  background-size: 0% 1px;
-  background-position: 0% 100%;
-  transition: background-size 0.25s ease-out;
+  transition: color 0.2s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent-primary);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-50%);
 }
 
 a:hover {
-  background-size: 100% 1px;
+  color: var(--color-accent-primary-hover);
 }
 
-/* Remove enhanced link effect from UI elements */
-a.post-date::before,
-button::before,
-a button::before,
-.reply-buttons a::before,
-.category-button::before,
-.nav-item::before,
-.site-avatar::before,
-.post-tags a::before,
-a[class*="button"]::before,
-a[href*="reply"]::before,
-a[href*="email"]::before,
-a[href*="mastodon"]::before,
-.microblog_reply_button::before {
+a:hover::after {
+  width: 100%;
+}
+
+/* H2 links specific styling */
+h2 a {
+  color: var(--color-text-primary);
+  font-weight: inherit;
+}
+
+h2 a::after {
+  background: var(--color-text-primary);
+}
+
+h2 a:hover {
+  color: var(--color-accent-primary);
+}
+
+h2 a:hover::after {
+  background: var(--color-accent-primary);
+}
+
+/* Remove link effect from UI elements */
+a.post-date::after,
+button::after,
+a button::after,
+.reply-buttons a::after,
+.category-button::after,
+.nav-item::after,
+.site-avatar::after,
+.post-tags a::after,
+a[class*="button"]::after,
+a[href*="reply"]::after,
+a[href*="email"]::after,
+a[href*="mastodon"]::after,
+.microblog_reply_button::after,
+.post-nav a::after {
   display: none !important;
-}
-
-a.post-date,
-button,
-a button,
-.reply-buttons a,
-.category-button,
-.nav-item,
-.site-avatar,
-.post-tags a,
-a[class*="button"],
-a[href*="reply"],
-a[href*="email"],
-a[href*="mastodon"],
-.microblog_reply_button {
-  background: none !important;
 }
 
 /* Focus styles for accessibility */
@@ -1038,6 +1054,55 @@ button[type="submit"]:hover {
   transform: translateY(-2px);
 }
 
+/* Search-space plugin styling */
+#search-space-container,
+.search-space-container {
+  margin: var(--space-lg) 0;
+}
+
+#search-space-input,
+.search-space-input {
+  width: 100%;
+  padding: var(--space-md);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: var(--space-md);
+}
+
+#search-space-input:focus,
+.search-space-input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+#search-space-results,
+.search-space-results {
+  margin-top: var(--space-lg);
+}
+
+.search-space-result {
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.search-space-result:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+
 /* Label styling */
 label {
   display: block;
@@ -1100,6 +1165,14 @@ input[type=\"submit\"]:hover {
   background: var(--color-accent-primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* Fix button text color when inside links */
+a button,
+a input[type=\"submit\"],
+button,
+input[type=\"submit\"] {
+  color: white !important;
 }
 
 /* =====================================================
@@ -1240,11 +1313,19 @@ input[type=\"submit\"]:hover {
 /* Individual conversation posts */
 .microblog_post {
   margin-bottom: var(--space-xl);
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
   position: relative;
+  transition: all 0.2s ease;
+}
+
+.microblog_post:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
 }
 
 /* Conversation user info */
