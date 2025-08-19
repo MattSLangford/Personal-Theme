@@ -52,6 +52,51 @@ body {
   line-height: var(--line-height-base);
 }
 
+/* Typography - Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: var(--space-xl) 0 var(--space-l);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: var(--space-l) 0 var(--space-m);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin: var(--space-l) 0 var(--space-m);
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: var(--space-m) 0 var(--space-s);
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: var(--space-m) 0 var(--space-s);
+}
+
+h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin: var(--space-m) 0 var(--space-s);
+}
+
 /* Header */
 .site-header {
   background: var(--bg-content);
@@ -69,6 +114,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
+  min-height: 60px;
 }
 
 .site-branding {
@@ -76,6 +122,7 @@ body {
   align-items: center;
   gap: var(--space-s);
   flex-shrink: 0;
+  height: 100%;
 }
 
 .site-avatar {
@@ -85,6 +132,7 @@ body {
   object-fit: cover;
   border: 2px solid var(--border-color);
   flex-shrink: 0;
+  display: block;
 }
 
 .site-title {
@@ -93,6 +141,9 @@ body {
   text-decoration: none;
   font-size: 1.1rem;
   white-space: nowrap; /* Prevent line breaks */
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .site-title:hover {
@@ -152,6 +203,17 @@ body {
   
   .menu-toggle {
     display: flex; /* Show hamburger on mobile */
+  }
+}
+
+/* Desktop Navigation - ensure it shows */
+@media (min-width: 769px) {
+  .main-nav {
+    display: flex !important;
+  }
+  
+  .menu-toggle {
+    display: none;
   }
 }
 
@@ -317,6 +379,35 @@ input[type="submit"]:hover,
   margin-top: var(--space-m);
 }
 
+.reply-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-s) var(--space-m);
+  background: var(--link-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.reply-button:hover {
+  background: var(--link-hover);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.reply-button svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
 /* Post Navigation */
 .post-navigation {
   display: flex;
@@ -392,10 +483,20 @@ input[type="submit"]:hover,
 }
 
 .microblog_user img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin: 0;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+}
+
+/* Override any existing avatar styles to ensure perfect circles */
+.microblog_conversation img,
+.comment img,
+.avatar,
+img[src*="avatars"] {
+  border-radius: 50% !important;
+  object-fit: cover !important;
 }
 
 /* Comment text field styling */

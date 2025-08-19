@@ -1,0 +1,76 @@
+{{ define "main" }}
+<div class="category-page">
+  <header class="list-header">
+    <h1 class="list-title">{{ .Title }}</h1>
+    {{ if .Description }}
+    <p class="list-description">{{ .Description }}</p>
+    {{ end }}
+    
+    {{ if and .Pages (gt (len .Pages) 0) }}
+    <div class="list-meta">
+      {{ $count := len .Pages }}
+      {{ if eq $count 1 }}
+        1 post
+      {{ else }}
+        {{ $count }} posts
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="posts h-feed">
+    {{ $paginator := .Paginate .Pages }}
+    {{ range .Paginator.Pages }}
+    <article class="post-preview h-entry">
+      <header class="post-header">
+        <a href="{{ .Permalink }}" class="post-date u-url">
+          <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+        </a>
+      </header>
+      
+      {{ if .Title }}
+        <h2 class="post-title p-name">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+        <div class="e-content">
+          {{ if in .RawContent "<!--more-->" }}
+            {{ $splitContents := split .RawContent "<!--more-->" }}
+            {{ $summary := index $splitContents 0 }}
+            {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
+            {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
+            {{ $summary | markdownify }}
+            <p><a class="read-more" href="{{ .Permalink }}">Continue reading →</a></p>
+          {{ else if .Params.custom_summary }}
+            <p>{{ .Summary | safeHTML }}</p>
+            <p><a class="read-more" href="{{ .Permalink }}">Continue reading →</a></p>
+          {{ else }}
+            {{ .Content }}
+          {{ end }}
+        </div>
+      {{ else }}
+        <div class="e-content">
+          {{ .Content }}
+        </div>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+  
+  {{ if or $paginator.HasPrev $paginator.HasNext }}
+  <nav class="post-nav" role="navigation">
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}" class="prev" rel="prev">
+      <span>← Newer</span>
+    </a>
+    {{ end }}
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}" class="next" rel="next">
+      <span>Older →</span>
+    </a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</div>
+{{ end }}
