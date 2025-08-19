@@ -229,7 +229,9 @@ a[href*="reply"]::after,
 a[href*="email"]::after,
 a[href*="mastodon"]::after,
 .microblog_reply_button::after,
-.post-nav a::after {
+.post-nav a::after,
+a:has(button)::after,
+a:has(input[type="submit"])::after {
   display: none !important;
 }
 
@@ -478,11 +480,19 @@ a:focus {
   border: none;
   border-radius: 0;
   margin-bottom: var(--space-3xl);
-  padding: 0;
+  padding: 0 0 var(--space-3xl) 0;
   position: relative;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.post-preview:last-child,
+.post:last-child,
+.h-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 @keyframes fadeInUp {
@@ -592,9 +602,10 @@ img {
 article img,
 .e-content img,
 .p-summary img {
-  margin: var(--space-lg) 0;
+  margin: var(--space-lg) auto;
   border-radius: var(--radius-lg);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: block;
 }
 
 /* Remove top margin for first image after text elements */
@@ -1498,8 +1509,11 @@ input.microblog_reply_button:hover {
   
   /* Mobile header adjustments */
   .header-container {
-    max-width: 800px;
+    max-width: calc(100% - 2rem);
     padding: var(--space-sm) var(--space-lg);
+    margin: var(--space-md) auto;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
   
   /* Mobile content padding - wider text area */
