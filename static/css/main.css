@@ -199,6 +199,25 @@ a:hover::after {
   left: 0;
 }
 
+/* Remove magnetic effect from specific elements */
+a.post-date::after,
+button::after,
+.reply-buttons a::after,
+.category-button::after,
+.nav-item::after,
+a[class*="button"]::after {
+  display: none !important;
+}
+
+a.post-date:hover,
+button:hover,
+.reply-buttons a:hover,
+.category-button:hover,
+.nav-item:hover,
+a[class*="button"]:hover {
+  transform: none !important;
+}
+
 /* Focus styles for accessibility */
 a:focus {
   outline: 2px solid var(--color-focus);
@@ -226,7 +245,7 @@ a:focus {
 
 /* Pill-shaped container */
 .header-container {
-  max-width: 600px;
+  max-width: 850px;
   margin: 0 auto;
   padding: var(--space-md) var(--space-xl);
   display: flex;
@@ -465,24 +484,7 @@ a:focus {
 .post-preview:nth-child(4) { animation-delay: 0.4s; }
 .post-preview:nth-child(5) { animation-delay: 0.5s; }
 
-/* Subtle post differentiation without cards */
-.untitled-post::before {
-  content: '●';
-  color: var(--color-accent-untitled);
-  font-size: 8px;
-  position: absolute;
-  left: -16px;
-  top: 8px;
-}
-
-.post-preview:not(.untitled-post)::before {
-  content: '■';
-  color: var(--color-accent-titled);
-  font-size: 8px;
-  position: absolute;
-  left: -16px;
-  top: 8px;
-}
+/* Remove post differentiation markers for cleaner look */
 
 .untitled-post .post-date {
   font-size: var(--font-size-sm);
@@ -582,9 +584,23 @@ img {
 article img,
 .e-content img,
 .p-summary img {
-  margin: 0 0 var(--space-lg) 0;
+  margin: var(--space-lg) 0;
   border-radius: var(--radius-lg);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Remove top margin for first image after text elements */
+p + img,
+h1 + img,
+h2 + img,
+h3 + img,
+h4 + img,
+h5 + img,
+h6 + img,
+ul + img,
+ol + img,
+blockquote + img {
+  margin-top: 0;
 }
 
 article img:hover,
@@ -916,12 +932,14 @@ select,
 textarea {
   width: 100%;
   padding: var(--space-md);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
   font-size: var(--font-size-base);
   margin-bottom: var(--space-md);
-  transition: all var(--transition-normal);
-  background: var(--color-bg-secondary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--color-text-primary);
   font-family: inherit;
   line-height: 1.5;
@@ -1017,20 +1035,22 @@ input[type=\"file\"]:hover {
 button,
 input[type=\"submit\"] {
   background: var(--color-accent-primary);
-  color: var(--color-bg-secondary);
-  border: 1px solid var(--color-accent-primary);
-  padding: var(--space-sm) var(--space-lg);
-  border-radius: var(--radius-md);
+  color: white;
+  border: none;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 50px;
   cursor: pointer;
   font-weight: 500;
-  font-size: var(--font-size-sm);
-  transition: all var(--transition-normal);
+  font-size: var(--font-size-base);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
 }
 
 button:hover,
 input[type=\"submit\"]:hover {
   background: var(--color-accent-primary-hover);
-  border-color: var(--color-accent-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
 }
 
 /* =====================================================
@@ -1072,20 +1092,20 @@ input[type=\"submit\"]:hover {
   font-size: var(--font-size-sm);
   font-weight: 500;
   padding: var(--space-sm) var(--space-lg);
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-normal);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
-  box-shadow: var(--shadow-sm);
 }
 
 .category-button:hover {
-  background: var(--color-bg-hover);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-medium);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
 }
 
 /* Archive post styling */
@@ -1151,30 +1171,31 @@ input[type=\"submit\"]:hover {
 /* Conversation container */
 .microblog_conversation {
   margin: var(--space-3xl) 0;
-  background: var(--color-bg-tertiary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .microblog_conversation::before {
   content: 'Comments';
   display: block;
   font-weight: 600;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-xl);
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 /* Individual conversation posts */
 .microblog_post {
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md);
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xl);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  position: relative;
 }
 
 /* Conversation user info */
@@ -1213,19 +1234,19 @@ input[type=\"submit\"]:hover {
 /* Reply form container */
 .microblog_reply_form {
   margin-top: var(--space-xl);
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .microblog_reply_form::before {
   content: 'Post Reply';
   display: block;
   font-weight: 600;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 /* Reply textarea */
@@ -1343,7 +1364,8 @@ input.microblog_reply_button:hover {
   
   /* Mobile header adjustments */
   .header-container {
-    padding: 0 var(--space-md);
+    max-width: 800px;
+    padding: var(--space-sm) var(--space-lg);
   }
   
   /* Mobile content padding - wider text area */
@@ -1466,12 +1488,12 @@ input.microblog_reply_button:hover {
 
 /* Footer styling */
 .site-footer {
-  background: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border-light);
+  background: transparent;
+  border-top: none;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   text-align: center;
-  padding: var(--space-xl) 0;
+  padding: var(--space-3xl) 0;
   width: 100%;
 }
 
