@@ -80,44 +80,27 @@
   --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Mode Colors */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text-primary: #f9fafb;
-    --color-text-secondary: #e5e7eb;
-    --color-text-muted: #9ca3af;
-    --color-text-light: #6b7280;
-    
-    --color-bg-primary: #111827;
-    --color-bg-secondary: #1f2937;
-    --color-bg-tertiary: #374151;
-    --color-bg-hover: #4b5563;
-    
-    --color-border-light: #374151;
-    --color-border-medium: #4b5563;
-    
-    --color-accent-primary: #60a5fa;
-    --color-accent-primary-hover: #3b82f6;
-    --color-accent-untitled: #60a5fa;
-    --color-accent-titled: #34d399;
-    
-    --color-focus: #1e40af;
-    --color-shadow: rgba(0, 0, 0, 0.3);
-    --color-shadow-hover: rgba(0, 0, 0, 0.4);
-  }
-}
 
 /* =====================================================
    RESET AND BASE STYLES
    ===================================================== */
 
-/* Universal box-sizing and reset */
+/* Universal box-sizing and reset with performance optimization */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* GPU acceleration for smooth animations */
+.header-container,
+.main-nav,
+.post-title a,
+.nav-item {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Root HTML element */
@@ -131,7 +114,10 @@ html {
 body {
   font-family: 'Inter', 'Helvetica Neue', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--color-text-primary);
-  background: var(--color-bg-primary);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
+    var(--color-bg-primary);
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -182,17 +168,35 @@ p {
   max-width: 65ch;
 }
 
-/* Link styling with subtle underlines */
+/* Magnetic link effect */
 a {
   color: var(--color-accent-primary);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: all var(--transition-normal);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  display: inline-block;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -1px;
+  left: 50%;
+  background: var(--color-accent-primary);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 a:hover {
   color: var(--color-accent-primary-hover);
-  border-bottom-color: var(--color-accent-primary-hover);
+  transform: translateY(-1px);
+}
+
+a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 /* Focus styles for accessibility */
@@ -206,28 +210,37 @@ a:focus {
    SITE HEADER AND NAVIGATION
    ===================================================== */
 
-/* Main site header with full-width background */
+/* iOS-inspired pill-shaped header */
 .site-header {
-  background: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-md) 0;
-  margin-bottom: 0;
+  background: transparent;
+  border: none;
+  padding: var(--space-lg) 0;
+  margin-bottom: var(--space-xl);
   position: relative;
   width: 100%;
   /* Support for iOS/macOS safe area insets */
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-  padding-top: calc(var(--space-md) + env(safe-area-inset-top));
+  padding-top: calc(var(--space-lg) + env(safe-area-inset-top));
 }
 
-/* Header container with max-width and centering */
+/* Pill-shaped container */
 .header-container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: var(--space-md) var(--space-xl);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: var(--space-md);
+  z-index: 100;
 }
 
 /* Site branding section with logo and title */
@@ -274,22 +287,23 @@ a:focus {
   color: var(--color-accent-primary);
 }
 
-/* Navigation menu (hidden by default, shown via JavaScript) */
+/* Floating pill navigation menu */
 .main-nav {
   display: none;
   position: absolute;
-  top: 100%;
-  right: var(--space-md);
-  width: 280px;
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
+  top: calc(100% + var(--space-sm));
+  right: 0;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
   flex-direction: column;
-  padding: var(--space-sm) 0;
-  gap: 0;
+  padding: var(--space-sm);
+  gap: 2px;
   z-index: 1000;
-  margin-top: var(--space-sm);
   overflow: hidden;
 }
 
@@ -311,26 +325,29 @@ a:focus {
   }
 }
 
-/* Individual navigation items */
+/* Modern navigation items */
 .nav-item {
   color: var(--color-text-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm);
   font-weight: 500;
-  padding: var(--space-sm) var(--space-lg);
-  transition: all var(--transition-fast);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  display: block;
 }
 
 .nav-item:hover {
-  background: var(--color-bg-hover);
+  background: rgba(0, 0, 0, 0.05);
   color: var(--color-text-primary);
+  transform: scale(1.02);
 }
 
-/* Current page indicator in navigation */
+/* Current page indicator */
 .nav-item.current {
-  background: var(--color-bg-tertiary);
-  color: var(--color-accent-primary);
+  background: var(--color-accent-primary);
+  color: white;
   font-weight: 600;
 }
 
@@ -419,38 +436,52 @@ a:focus {
    POST CARDS AND CONTENT
    ===================================================== */
 
-/* Post preview cards and individual posts */
+/* Flat post layout with scroll reveal */
 .post-preview,
 .post,
 .h-entry {
-  background: var(--color-bg-tertiary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--space-2xl);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin-bottom: var(--space-3xl);
+  padding: 0;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* Hover effects for post cards */
-.post-preview:hover,
-.post:hover,
-.h-entry:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-  border-color: var(--color-border-medium);
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Remove margin from last post */
-.post-preview:last-child,
-.post:last-child,
-.h-entry:last-child {
-  margin-bottom: 0;
+/* Stagger animation delay for multiple posts */
+.post-preview:nth-child(1) { animation-delay: 0.1s; }
+.post-preview:nth-child(2) { animation-delay: 0.2s; }
+.post-preview:nth-child(3) { animation-delay: 0.3s; }
+.post-preview:nth-child(4) { animation-delay: 0.4s; }
+.post-preview:nth-child(5) { animation-delay: 0.5s; }
+
+/* Subtle post differentiation without cards */
+.untitled-post::before {
+  content: '●';
+  color: var(--color-accent-untitled);
+  font-size: 8px;
+  position: absolute;
+  left: -16px;
+  top: 8px;
 }
 
-/* Untitled posts (micro-posts) with blue accent */
-.untitled-post {
-  border-left: 4px solid var(--color-accent-untitled);
+.post-preview:not(.untitled-post)::before {
+  content: '■';
+  color: var(--color-accent-titled);
+  font-size: 8px;
+  position: absolute;
+  left: -16px;
+  top: 8px;
 }
 
 .untitled-post .post-date {
@@ -462,11 +493,6 @@ a:focus {
 .untitled-post .e-content {
   line-height: 1.7;
   margin-top: var(--space-sm);
-}
-
-/* Titled posts (articles) with green accent */
-.post-preview:not(.untitled-post) {
-  border-left: 4px solid var(--color-accent-titled);
 }
 
 .post-preview:not(.untitled-post) .post-date {
@@ -496,7 +522,7 @@ a.post-date:hover {
   border-bottom: none !important;
 }
 
-/* Post titles */
+/* Post titles with subtle parallax effect */
 .post-title,
 .p-name {
   font-size: var(--font-size-3xl);
@@ -504,14 +530,28 @@ a.post-date:hover {
   line-height: 1.3;
   margin-bottom: var(--space-lg);
   color: var(--color-text-primary);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .post-title a {
   color: inherit;
+  border: none !important;
+  background: linear-gradient(90deg, var(--color-text-primary), var(--color-accent-primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.post-title a::after {
+  display: none;
 }
 
 .post-title a:hover {
-  color: var(--color-accent-primary);
+  background-position: 0% 0;
+  transform: none;
 }
 
 /* Post content areas */
@@ -544,7 +584,13 @@ article img,
 .p-summary img {
   margin: 0 0 var(--space-lg) 0;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+article img:hover,
+.e-content img:hover,
+.p-summary img:hover {
+  transform: scale(1.02);
 }
 
 /* Fix spacing for images inside paragraphs */
