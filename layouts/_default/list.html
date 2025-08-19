@@ -33,22 +33,22 @@
 
   {{ if eq .Section "categories" }}
     {{ if .Site.Taxonomies.categories }}
-    <div class="taxonomy-list">
+    <div class="category-list">
       {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-      <a href="/categories/{{ $name | urlize }}" class="taxonomy-item">
-        <span class="taxonomy-name">#{{ $name }}</span>
-        <span class="taxonomy-count">{{ len $taxonomy }}</span>
+      <a href="/categories/{{ $name | urlize }}" class="category-item">
+        <div class="category-name">{{ $name }}</div>
+        <div class="category-count">{{ len $taxonomy }} posts</div>
       </a>
       {{ end }}
     </div>
     {{ end }}
   {{ else if eq .Section "tags" }}
     {{ if .Site.Taxonomies.tags }}
-    <div class="taxonomy-list">
+    <div class="category-list">
       {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-      <a href="/tags/{{ $name | urlize }}" class="taxonomy-item">
-        <span class="taxonomy-name">{{ $name }}</span>
-        <span class="taxonomy-count">{{ len $taxonomy }}</span>
+      <a href="/tags/{{ $name | urlize }}" class="category-item">
+        <div class="category-name">{{ $name }}</div>
+        <div class="category-count">{{ len $taxonomy }} posts</div>
       </a>
       {{ end }}
     </div>
@@ -57,30 +57,22 @@
     {{ if .Pages }}
     <div class="post-list">
       {{ range .Pages }}
-      <article class="post-item">
+      <article class="post-preview h-entry">
         <header class="post-header">
           {{ if .Date }}
-          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+          <time class="post-date u-url" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
             {{ .Date.Format "Jan 2, 2006" }}
           </time>
-          {{ end }}
-          
-          {{ if .Params.categories }}
-          <div class="post-categories">
-            {{ range .Params.categories }}
-            <a href="/categories/{{ . | urlize }}" class="category-tag">#{{ . }}</a>
-            {{ end }}
-          </div>
           {{ end }}
         </header>
 
         {{ if .Title }}
-        <h2 class="post-title">
+        <h2 class="post-title p-name">
           <a href="{{ .Permalink }}">{{ .Title }}</a>
         </h2>
         {{ end }}
 
-        <div class="post-content">
+        <div class="e-content">
           {{ if .Params.photos }}
             {{ if eq (len .Params.photos) 1 }}
               <img src="{{ index .Params.photos 0 }}" alt="">
@@ -102,38 +94,39 @@
             {{ .Content }}
           {{ end }}
         </div>
+        
+        {{ if .Params.categories }}
+        <footer class="post-meta">
+          <ul class="post-tags">
+            {{ range .Params.categories }}
+            {{ $href := print (absURL "categories/") (urlize .) }}
+            <li><a href="{{ $href }}">{{ . }}</a></li>
+            {{ end }}
+          </ul>
+        </footer>
+        {{ end }}
       </article>
       {{ end }}
     </div>
     {{ else }}
     <div class="empty-state">
       <p>No posts found in this section.</p>
-      <a href="/" class="page-link">← Back to Home</a>
+      <a href="/" class="button">← Back to Home</a>
     </div>
     {{ end }}
   {{ end }}
 
   {{ if .Paginator }}
-  <nav class="pagination" aria-label="Pagination Navigation">
+  <nav class="post-nav" aria-label="Pagination Navigation">
     {{ if .Paginator.HasPrev }}
-    <a href="{{ .Paginator.Prev.URL }}" class="page-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-      </svg>
-      Previous
+    <a href="{{ .Paginator.Prev.URL }}" class="prev" rel="prev">
+      <span>← Previous</span>
     </a>
     {{ end }}
 
-    <span class="page-info">
-      Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
-    </span>
-
     {{ if .Paginator.HasNext }}
-    <a href="{{ .Paginator.Next.URL }}" class="page-link">
-      Next
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-      </svg>
+    <a href="{{ .Paginator.Next.URL }}" class="next" rel="next">
+      <span>Next →</span>
     </a>
     {{ end }}
   </nav>

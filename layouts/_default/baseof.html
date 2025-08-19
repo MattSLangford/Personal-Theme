@@ -18,9 +18,15 @@
         {{ range .Site.Menus.main }}
         <a href="{{ .URL }}" class="nav-item">{{ .Name }}</a>
         {{ end }}
-        <a href="{{ .Site.BaseURL }}posts/" class="nav-item">{{ T "posts" }}</a>
-        <a href="{{ .Site.BaseURL }}archive/" class="nav-item">{{ T "archive" }}</a>
+        <a href="{{ .Site.BaseURL }}posts/" class="nav-item">Posts</a>
+        <a href="{{ .Site.BaseURL }}archive/" class="nav-item">Archive</a>
       </nav>
+      
+      <button class="menu-toggle" aria-label="Menu">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
     </div>
   </header>
 
