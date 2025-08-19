@@ -1,0 +1,26 @@
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-branding">
+      <a href="{{ .Site.BaseURL }}" class="site-branding-link">
+        {{ if .Site.Params.custom_avatar }}
+          <img src="{{ .Site.Params.custom_avatar }}" alt="{{ .Site.Author.name }}" class="site-avatar">
+        {{ else if .Site.Author.avatar }}
+          <img src="{{ .Site.Author.avatar }}" alt="{{ .Site.Author.name }}" class="site-avatar">
+        {{ end }}
+        <span class="site-title">{{ .Site.Title }}</span>
+      </a>
+    </div>
+    
+    <nav class="main-nav" role="navigation" aria-label="{{ T "toggle_menu" }}">
+      <a href="{{ .Site.BaseURL }}" class="nav-item">{{ T "home" }}</a>
+      {{ if .Site.Params.about_page }}
+      <a href="{{ .Site.Params.about_page }}" class="nav-item">{{ T "about" }}</a>
+      {{ end }}
+      <a href="{{ .Site.BaseURL }}posts/" class="nav-item">{{ T "posts" }}</a>
+      <a href="{{ .Site.BaseURL }}archive/" class="nav-item">{{ T "archive" }}</a>
+      {{ if .Site.Params.search_enabled }}
+      <a href="{{ .Site.BaseURL }}search/" class="nav-item">{{ T "search" }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

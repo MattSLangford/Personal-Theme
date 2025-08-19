@@ -1,4 +1,5 @@
 {{ define "main" }}
+<<<<<<< HEAD
 <div class="quantum-stack">
   {{ if .Site.Params.description }}
   <div class="site-intro">
@@ -92,6 +93,75 @@
       View All Posts
     </a>
   </div>
+=======
+<div class="home-blog">
+  <div class="posts h-feed">
+    {{ $paginator := .Paginate (where .Site.RegularPages.ByDate.Reverse "Type" "post") }}
+    {{ range .Paginator.Pages }}
+    <article class="post-preview h-entry {{ range .Params.categories }} {{ . | urlize | lower }}{{ end }}{{ if not .Title }} untitled-post{{ end }}">
+      <header class="post-header">
+        <a href="{{ .Permalink }}" class="post-date u-url">
+          <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+        </a>
+      </header>
+      
+      {{ if .Title }}
+        <h2 class="post-title p-name">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+        <div class="e-content">
+          {{ if in .RawContent "<!--more-->" }}
+            {{ $splitContents := split .RawContent "<!--more-->" }}
+            {{ $summary := index $splitContents 0 }}
+            {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
+            {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
+            {{ $summary | markdownify }}
+            <p><a class="read-more" href="{{ .Permalink }}">{{ T "read_more" }} →</a></p>
+          {{ else if .Params.custom_summary }}
+            <p>{{ .Summary | safeHTML }}</p>
+            <p><a class="read-more" href="{{ .Permalink }}">{{ T "read_more" }} →</a></p>
+          {{ else }}
+            {{ .Content }}
+          {{ end }}
+        </div>
+      {{ else }}
+        <div class="e-content">
+          {{ .Content }}
+        </div>
+      {{ end }}
+      
+      {{ if .Params.categories }}
+      <footer class="post-meta">
+        <ul class="post-tags">
+          {{ range .Params.categories }}
+          {{ $href := print (absURL "categories/") (urlize .) }}
+          <li><a href="{{ $href }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </footer>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+  
+  {{ if or $paginator.HasPrev $paginator.HasNext }}
+  <nav class="post-nav" role="navigation">
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}" class="prev" rel="prev">
+      <span>←</span>
+      <span>{{ T "newer_posts" }}</span>
+    </a>
+    {{ end }}
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}" class="next" rel="next">
+      <span>{{ T "older_posts" }}</span>
+      <span>→</span>
+    </a>
+    {{ end }}
+  </nav>
+>>>>>>> main
   {{ end }}
 </div>
 {{ end }}
