@@ -168,40 +168,20 @@ p {
   max-width: 65ch;
 }
 
-/* Enhanced link effect */
+/* Subtle link effect */
 a {
   color: var(--color-accent-primary);
   text-decoration: none;
   position: relative;
   display: inline-block;
-  background: linear-gradient(135deg, var(--color-accent-primary) 0%, #4285f4 100%) no-repeat;
-  background-size: 0% 3px;
+  background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-primary)) no-repeat;
+  background-size: 0% 1px;
   background-position: 0% 100%;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  overflow: hidden;
-}
-
-a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(110deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.6) 55%, transparent 70%, transparent 100%);
-  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  pointer-events: none;
-  z-index: 1;
+  transition: background-size 0.25s ease-out;
 }
 
 a:hover {
-  color: var(--color-accent-primary-hover);
-  background-size: 100% 3px;
-  transform: translateY(-1px);
-}
-
-a:hover::before {
-  left: 100%;
+  background-size: 100% 1px;
 }
 
 /* Remove enhanced link effect from UI elements */
@@ -555,15 +535,9 @@ a.post-date:hover {
 }
 
 .post-title a {
-  color: inherit;
+  color: var(--color-text-primary);
   border: none !important;
-  background: linear-gradient(90deg, var(--color-text-primary), var(--color-accent-primary));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  transition: background-position 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: color 0.3s ease;
 }
 
 .post-title a::after {
@@ -571,8 +545,7 @@ a.post-date:hover {
 }
 
 .post-title a:hover {
-  background-position: 0% 0;
-  transform: none;
+  color: var(--color-accent-primary);
 }
 
 /* Post content areas */
@@ -618,8 +591,15 @@ h5 + img,
 h6 + img,
 ul + img,
 ol + img,
-blockquote + img {
+blockquote + img,
+div + img {
   margin-top: 0;
+}
+
+/* Handle images after paragraph breaks or text content */
+br + img,
+.e-content > img:not(:first-child) {
+  margin-top: var(--space-lg);
 }
 
 /* Ensure images after images have top margin */
@@ -856,23 +836,21 @@ ol ul {
   text-decoration: none;
   font-size: var(--font-size-sm);
   font-weight: 500;
-  padding: 0.875rem 1.75rem;
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-normal);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
-  border-bottom: 1px solid var(--color-border-light) !important;
-  box-shadow: var(--shadow-sm);
 }
 
 .post-nav a:hover {
-  background: var(--color-bg-hover);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-medium);
-  border-bottom: 1px solid var(--color-border-medium) !important;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
 }
 
 /* =====================================================
@@ -1012,6 +990,52 @@ legend {
   font-weight: 600;
   color: var(--color-text-primary);
   padding: 0 var(--space-sm);
+}
+
+/* Search form specific styling */
+.search-form,
+form[action*="search"],
+#search-form {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  margin: var(--space-lg) 0;
+}
+
+.search-form input[type="search"],
+form[action*="search"] input[type="search"],
+#search-input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.search-form button,
+form[action*="search"] button,
+#search-form button,
+button[type="submit"] {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+
+.search-form button:hover,
+form[action*="search"] button:hover,
+#search-form button:hover,
+button[type="submit"]:hover {
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
 }
 
 /* Label styling */
@@ -1302,9 +1326,11 @@ textarea.microblog_reply_textarea:focus {
 .microblog_reply_button button,
 button.microblog_reply_button,
 input.microblog_reply_button {
-  background: var(--color-accent-primary);
-  border: none;
-  color: white;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--color-text-primary);
   padding: var(--space-md) var(--space-xl);
   border-radius: 50px;
   font-size: var(--font-size-base);
@@ -1312,16 +1338,16 @@ input.microblog_reply_button {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   margin-right: var(--space-sm);
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
 }
 
 .microblog_reply_button input:hover,
 .microblog_reply_button button:hover,
 button.microblog_reply_button:hover,
 input.microblog_reply_button:hover {
-  background: var(--color-accent-primary-hover);
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
 }
 
 /* =====================================================
