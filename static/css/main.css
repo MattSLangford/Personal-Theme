@@ -122,7 +122,7 @@
 
 /* Root HTML element */
 html {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
   scroll-behavior: smooth;
 }
@@ -136,7 +136,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.7;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   /* Support for iOS/macOS safe area insets */
@@ -460,7 +460,6 @@ a:focus {
 }
 
 .untitled-post .e-content {
-  font-size: var(--font-size-base);
   line-height: 1.7;
   margin-top: var(--space-sm);
 }
@@ -519,7 +518,6 @@ a.post-date:hover {
 .e-content,
 .p-summary,
 .post-content {
-  font-size: var(--font-size-base);
   line-height: 1.7;
   color: var(--color-text-secondary);
 }
@@ -1294,7 +1292,7 @@ input.microblog_reply_button:hover {
 @media (max-width: 768px) {
   /* Adjust base font size for mobile */
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
   
   /* Mobile header adjustments */
